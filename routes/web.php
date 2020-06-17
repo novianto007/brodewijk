@@ -11,9 +11,7 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
-});
+$router->get('/ping', fn() => 'Pong');
 
 $router->group(['prefix' => 'customer/api'], function () use ($router) {
     $router->post("/register", "AuthController@register");
