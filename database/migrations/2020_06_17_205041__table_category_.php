@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class TableFabricType extends Migration
+class TableCategory extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class TableFabricType extends Migration
      */
     public function up()
     {
-        Schema::create('fabric_types', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger("category_id");
-            $table->string("name", 100);
-            $table->double("base_price");
+            $table->string("name", 80);
+            $table->string("type", 20);
+            $table->text("resources");
+            $table->string("slug", 120);
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class TableFabricType extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fabric_types');
+        Schema::dropIfExists('categories');
     }
 }

@@ -13,13 +13,13 @@ class FabricTypeSeeder extends Seeder
     public function run()
     {
         DB::table('fabric_types')->insert([
-            'product_id' => 1,
+            'category_id' => 1,
             'name' => 'Wool',
             'base_price' => '2110000',
         ]);
 
         DB::table('fabric_types')->insert([
-            'product_id' => 1,
+            'category_id' => 1,
             'name' => 'Semi Wool',
             'base_price' => '1520000',
         ]);

@@ -11,12 +11,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call('ProductSeeder');
+        $this->call('CategorySeeder');
         $this->call('FabricTypeSeeder');
         $this->call('FabricSeeder');
         $this->call('FabricColorSeeder');
         $this->call('FeatureSeeder');
         $this->call('FeatureOptionSeeder');
         $this->call('FeatureOptionChildSeeder');
+        $this->call('FeaturePrice');
+        $this->call('Product');
+        $this->call('ProductFeature');
     }
 }

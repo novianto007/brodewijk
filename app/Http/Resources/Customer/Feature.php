@@ -4,7 +4,7 @@ namespace App\Http\Resources\Customer;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class FabricType extends JsonResource
+class Feature extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,7 +17,9 @@ class FabricType extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'base_price' => $this->base_price,
+            'type' => $this->type,
+            'description' => $this->description,
+            'options' => $this->when($this->type == "option", FeatureOption::collection($this->featureOptions)),
         ];
     }
 }

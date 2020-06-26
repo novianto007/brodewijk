@@ -36,11 +36,11 @@ class FabricColorController extends Controller
     protected function generatePath($fabricColor)
     {
         $fabric = $fabricColor->fabric;
-        $productName = Str::slug($fabric->fabricType->product->name);
+        $categoryName = Str::slug($fabric->fabricType->category->name);
         $type = Str::slug($fabric->fabricType->name);
         $brand = Str::slug($fabric->brand);
         $color = Str::slug($fabricColor->name);
-        return sprintf("images/%s/%s/%s/%s", $productName, $type, $brand, $color);
+        return sprintf("images/%s/%s/%s/%s", $categoryName, $type, $brand, $color);
     }
 
     protected function findModel($id)

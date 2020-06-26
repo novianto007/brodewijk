@@ -13,17 +13,17 @@ class FabricController extends Controller
      *
      * @return Response
      */
-    public function getAll($productSlug)
+    public function getAll($categorySlug)
     {
-        $data = Cache::get('fabric:' . $productSlug);
+        $data = Cache::get('fabric:' . $categorySlug);
         if ($data == null) {
-            $fabric = Fabric::where('products.slug', $productSlug)
+            $fabric = Fabric::where('categories.slug', $categorySlug)
                 ->leftJoin('fabric_types', 'fabric_types.id', '=', 'fabrics.fabric_type_id')
-                ->leftJoin('products', 'products.id', '=', 'fabric_types.product_id')
+                ->leftJoin('categories', 'categories.id', '=', 'fabric_types.category_id')
                 ->select('fabrics.*')
                 ->get();
             $data = FabricResource::collection($fabric);
-            Cache::put('fabric:' . $productSlug, $data, 900);
+            Cache::put('fabric:' . $categorySlug, $data, 900);
         }
         return response()->json([$data], 200);
     }

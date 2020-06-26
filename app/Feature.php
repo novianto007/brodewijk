@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Feature extends Model
 {
 
     /**
@@ -13,8 +13,9 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'type', 'resources'
+        'name', 'type', 'description', 'category_id'
     ];
+
     /**
      * The attributes excluded from the model's JSON form.
      *
@@ -22,8 +23,13 @@ class Product extends Model
      */
     protected $hidden = [];
 
-    public function fabricTypes()
+    public function category()
     {
-        return $this->hasMany(FabricType::class);
+        return $this->belongsTo(Category::class);
+    }
+
+    public function featureOptions()
+    {
+        return $this->hasMany(FeatureOption::class);
     }
 }
