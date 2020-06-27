@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources\Customer;
 
-use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\BaseResource;
 
-class Fabric extends JsonResource
+class Fabric extends BaseResource
 {
     /**
      * Transform the resource into an array.
@@ -16,12 +16,18 @@ class Fabric extends JsonResource
     {
         return [
             'id' => $this->id,
+            'selected' => $this->id == $this->extraField->fabric_id,
             'name' => $this->name,
             'type' => new FabricType($this->fabricType),
             'brand' => $this->brand,
             'grade' => $this->grade,
             'description' => $this->description,
-            'color' => FabricColor::collection($this->fabricColors),
+            'colors' => FabricColor::collection($this->fabricColors)->addExtraField($this->extraField),
         ];
+    }
+
+    public static function collection($resource)
+    {
+        return new FabricCollection($resource);
     }
 }

@@ -24,6 +24,6 @@ class CustomerController extends Controller
      */
     public function profile()
     {
-        return response()->json(['customer' => Auth::user()], 200);
+        return $this->response(false, 'sucess', Auth::user());
     }
 }

@@ -20,22 +20,16 @@ class AuthController extends Controller
         ]);
 
         try {
-            $user = new Customer;
-            $user->firstName = $request->input('firstName');
-            $user->lastName = $request->input('lastName');
-            $user->username = $request->input('username');
-            $user->email = $request->input('email');
-            $user->phoneNumber = $request->input('phoneNumber');
-            $plainPassword = $request->input('password');
-            $user->password = app('hash')->make($plainPassword);
-            $user->save();
-            return response()->json(['user' => $user, 'message' => 'CREATED'], 201);
+            $input = $request->all();
+            $input['password'] = app('hash')->make($input['password']);
+            $user = Customer::create($input);
+            return $this->response(false, 'Registration Success', $user, 201);
         } catch (\Exception $e) {
-            return response()->json(['message' => 'User Registration Failed!'], 409);
+            return $this->response(true, 'Registration Failed!', null, 409);
         }
     }
 
-     /**
+    /**
      * Get a JWT via given credentials.
      *
      * @param  Request  $request
@@ -48,7 +42,7 @@ class AuthController extends Controller
             'password' => 'required|string',
         ]);
         $fieldType = filter_var($request->identifier, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-        if (! $token = Auth::attempt([$fieldType => $request->identifier, 'password' => $request->password])) {
+        if (!$token = Auth::attempt([$fieldType => $request->identifier, 'password' => $request->password])) {
             return response()->json(['message' => 'Unauthorized'], 401);
         }
 

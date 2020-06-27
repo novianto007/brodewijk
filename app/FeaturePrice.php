@@ -4,16 +4,18 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Fabric extends Model
+class FeaturePrice extends Model
 {
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'brand', 'grade', 'description', 'fabric_type_id'
+        'fabric_type_id', 'feature_option', 'price'
     ];
+
     /**
      * The attributes excluded from the model's JSON form.
      *
@@ -21,13 +23,13 @@ class Fabric extends Model
      */
     protected $hidden = [];
 
-    public function fabricColors()
-    {
-        return $this->hasMany(FabricColor::class);
-    }
-
     public function fabricType()
     {
         return $this->belongsTo(FabricType::class);
+    }
+
+    public function featureOption()
+    {
+        return $this->belongsTo(FeatureOption::class);
     }
 }

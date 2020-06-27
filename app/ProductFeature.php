@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class FeatureOption extends Model
+class ProductFeature extends Model
 {
 
     /**
@@ -13,7 +13,7 @@ class FeatureOption extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'image', 'is_has_child', 'description', 'feature_id', 'resources', 'code_name', 'resource_depend'
+        'product_id', 'feature_id', 'option_value', 'child_value', 'string_value'
     ];
 
     /**
@@ -23,9 +23,9 @@ class FeatureOption extends Model
      */
     protected $hidden = [];
 
-    public function featureOptionChildren()
+    public function product()
     {
-        return $this->hasMany(FeatureOptionChild::class);
+        return $this->belongsTo(Product::class);
     }
 
     public function feature()
@@ -33,8 +33,13 @@ class FeatureOption extends Model
         return $this->belongsTo(Feature::class);
     }
 
-    public function depend()
+    public function optionValue()
     {
-        return $this->hasOne(Feature::class, 'resource_depend');
+        return $this->belongsTo(FeatureOption::class, 'option_value');
+    }
+
+    public function childValue()
+    {
+        return $this->belongsTo(FeatureOptionChild::class, 'child_value');
     }
 }

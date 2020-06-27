@@ -15,22 +15,19 @@ class FabricColorController extends Controller
         $file = $request->file('file');
         $fabricColor = $this->findModel($id);
         if ($fabricColor->path != '') {
-            array_map('unlink', glob('public/'.storage_path($fabricColor->path)."/*.*"));
-        }else{
+            array_map('unlink', glob('public/' . storage_path($fabricColor->path) . "/*.*"));
+        } else {
             $fabricColor->path = $this->generatePath($fabricColor);
             $fabricColor->save();
         }
 
-        if (! file_exists(storage_path('public/'.$fabricColor->path))) {
-            mkdir(storage_path('public/'.$fabricColor->path), 0777, true);
+        if (!file_exists(storage_path('public/' . $fabricColor->path))) {
+            mkdir(storage_path('public/' . $fabricColor->path), 0777, true);
         }
 
         $zip = Zip::open($file->path());
-        $zip->extract(storage_path('public/'.$fabricColor->path));
-        return response()->json([
-            "error" => false,
-            "message" => "success",
-        ]);
+        $zip->extract(storage_path('public/' . $fabricColor->path));
+        return $this->response(false, 'success', null);
     }
 
     protected function generatePath($fabricColor)

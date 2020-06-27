@@ -14,6 +14,8 @@ class Product extends Seeder
     {
         DB::table('products')->insert([
             'category_id' => 1,
+            'fabric_id' => 1,
+            'fabric_color_id' => 1,
             'name' => 'product 1',
             'description' => 'best suit product',
             'image' => 'https://images-na.ssl-images-amazon.com/images/I/61ErfIIKOmL._UL1440_.jpg',

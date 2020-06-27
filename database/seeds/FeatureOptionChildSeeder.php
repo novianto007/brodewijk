@@ -12,35 +12,31 @@ class FeatureOptionChildSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('feature_option_childs')->insert([
+        DB::table('feature_option_children')->insert([
             'feature_option_id' => 1,
             'name' => 'Black',
             'image' => 'https://www.brodewijk.com/static/media/Black.b0574060.jpg',
-            'is_default' => 1,
             'resources' => null
         ]);
 
-        DB::table('feature_option_childs')->insert([
+        DB::table('feature_option_children')->insert([
             'feature_option_id' => 1,
             'name' => 'Navy Blue',
             'image' => 'https://www.brodewijk.com/static/media/Black.b0574060.jpg',
-            'is_default' => 0,
             'resources' => null
         ]);
 
-        DB::table('feature_option_childs')->insert([
+        DB::table('feature_option_children')->insert([
             'feature_option_id' => 2,
             'name' => 'Black',
             'image' => 'https://www.brodewijk.com/static/media/Black.b0574060.jpg',
-            'is_default' => 0,
             'resources' => null
         ]);
 
-        DB::table('feature_option_childs')->insert([
+        DB::table('feature_option_children')->insert([
             'feature_option_id' => 2,
             'name' => 'Navy Blue',
             'image' => 'https://www.brodewijk.com/static/media/Black.b0574060.jpg',
-            'is_default' => 0,
             'resources' => null
         ]);
     }

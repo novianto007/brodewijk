@@ -13,10 +13,9 @@ class TableFeatureOptionChild extends Migration
      */
     public function up()
     {
-        Schema::create('feature_option_childs', function (Blueprint $table) {
+        Schema::create('feature_option_children', function (Blueprint $table) {
             $table->id();
             $table->bigInteger("feature_option_id");
-            $table->boolean("is_default");
             $table->string("name", 100);
             $table->string("image", 200)->nullable();
             $table->text("resources")->nullable();
@@ -31,6 +30,6 @@ class TableFeatureOptionChild extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('feature_option_childs');
+        Schema::dropIfExists('feature_option_children');
     }
 }
