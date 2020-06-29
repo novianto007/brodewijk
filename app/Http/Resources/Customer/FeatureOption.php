@@ -23,32 +23,24 @@ class FeatureOption extends JsonResource
             'resources' => $this->getResource(),
             'code_name' => $this->code_name,
             'resource_depend' => $this->resource_depend,
-            'childs' => $this->when($this->is_has_child, FeatureOptionChild::collection($this->featureOptionChilds)),
+            'prices' => FeaturePrice::collection($this->featurePrices),
+            'childs' => $this->when($this->is_has_child, FeatureOptionChild::collection($this->featureOptionChildren)),
         ];
     }
 
     private function getResource(){     
         $resourceList = (unserialize($this->resources))?unserialize($this->resources):[];
-        $imageResources = [];
-        foreach ($resourceList as $key => $val){
-            $resource = [
-                "position" => $key,
-                "image" => $val
-            ];
-            array_push($imageResources, $resource);
-        }
-        return $this->generateWithDepend($imageResources);
+        return $this->generateWithDepend($resourceList);
     }
 
     private function generateWithDepend($imageResources){
         if($this->resource_depend){
             $newResourceList = [];
             foreach($this->depend->featureOptions as $option){
-                $oldResources = $imageResources;
-                foreach($oldResources as $row){
-                    $row["image"] = str_replace('{depend}', $option->code_name, $row["image"]);
+                foreach($imageResources as $key => $val){
+                    $imageResources[$key] = str_replace('{depend}', $option->code_name, $val);
                 }
-                $newResourceList[$option->code_name] = $oldResources;
+                $newResourceList[$option->code_name] = $imageResources;
             }
             return $newResourceList;
         }

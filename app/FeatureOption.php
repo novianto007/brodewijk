@@ -28,6 +28,11 @@ class FeatureOption extends Model
         return $this->hasMany(FeatureOptionChild::class);
     }
 
+    public function featurePrices()
+    {
+        return $this->hasMany(FeaturePrice::class);
+    }
+
     public function feature()
     {
         return $this->belongsTo(Feature::class);
@@ -35,6 +40,6 @@ class FeatureOption extends Model
 
     public function depend()
     {
-        return $this->hasOne(Feature::class, 'resource_depend');
+        return $this->belongsTo(Feature::class, 'resource_depend');
     }
 }
