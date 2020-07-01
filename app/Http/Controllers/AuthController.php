@@ -11,11 +11,11 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $this->validate($request, [
-            'firstName' => 'required|string',
-            'lastName' => 'string',
+            'first_name' => 'required|string',
+            'last_name' => 'string',
             'username' => 'required|unique:customers',
             'email' => 'required|email|unique:customers',
-            'phoneNumber' => 'required|regex:/(08)[0-9]{8,13}/',
+            'phone_number' => 'required|regex:/(08)[0-9]{8,13}/',
             'password' => 'required|min:8|confirmed',
         ]);
 

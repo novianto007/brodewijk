@@ -25,7 +25,7 @@ class Product extends Model
 
     public static function getBySlug($categorySlug, $productSlug)
     {
-        return Product::where('products.slug', $productSlug)->where('categories.slug', $categorySlug)
+        return self::where('products.slug', $productSlug)->where('categories.slug', $categorySlug)
             ->leftJoin('categories', 'categories.id', '=', 'products.category_id')
             ->orWhere('is_default', 1)->select('products.*')->first();
     }

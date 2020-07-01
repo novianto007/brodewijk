@@ -18,8 +18,15 @@ class DatabaseSeeder extends Seeder
         $this->call('FeatureSeeder');
         $this->call('FeatureOptionSeeder');
         $this->call('FeatureOptionChildSeeder');
-        $this->call('FeaturePrice');
-        $this->call('Product');
-        $this->call('ProductFeature');
+        $this->call('CustomerSeeder');
+        $this->call('FeaturePriceSeeder');
+        $this->call('ProductSeeder');
+        $this->call('ProductFeatureSeeder');
+        $this->call('StandardMeasurementSeeder');
+        $this->call('DefaultMeasurementSeeder');
+        $this->call('FitOptionSeeder');
+        $this->call('ClothMeasurementSeeder');
+        $this->call('PantsMeasurementSeeder');
+        $this->call('SizePreferenceSeeder');
     }
 }

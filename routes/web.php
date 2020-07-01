@@ -19,6 +19,7 @@ $router->group(['prefix' => 'customer/api'], function () use ($router) {
     $router->get("/profile", "CustomerController@profile");
     $router->get("/fabric/{categorySlug}[/{productSlug}]", "FabricController@getAll");
     $router->get("/feature/{categorySlug}[/{productSlug}]", "FabricController@getFeature");
+    $router->get("/measurement", "MeasurementController@getAll");
 });
 
 $router->post("/upload/{id}", "FabricColorController@upload");

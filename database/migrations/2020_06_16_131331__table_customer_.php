@@ -17,10 +17,10 @@ class TableCustomer extends Migration
             $table->id();
             $table->string("username", 80)->unique();
             $table->string("email", 80)->unique();
-            $table->string("firstName", 80);
-            $table->string("lastName", 80);
+            $table->string("first_name", 80);
+            $table->string("last_name", 80);
             $table->string("password", 250);
-            $table->string("phoneNumber", 15);
+            $table->string("phone_number", 15);
             $table->string("token", 200)->nullable();
             $table->timestamps();
         });

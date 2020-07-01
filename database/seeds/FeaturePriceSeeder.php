@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class FeaturePrice extends Seeder
+class FeaturePriceSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,133 +13,133 @@ class FeaturePrice extends Seeder
     public function run()
     {
         DB::table('feature_prices')->insert([
-            'fabric_type_id' => 1, 
-            'feature_option_id' => 1, 
+            'fabric_type_id' => 1,
+            'feature_option_id' => 1,
             'price' => 0,
         ]);
         DB::table('feature_prices')->insert([
-            'fabric_type_id' => 1, 
-            'feature_option_id' => 2, 
+            'fabric_type_id' => 1,
+            'feature_option_id' => 2,
             'price' => 200000,
         ]);
         DB::table('feature_prices')->insert([
-            'fabric_type_id' => 1, 
-            'feature_option_id' => 3, 
+            'fabric_type_id' => 1,
+            'feature_option_id' => 3,
             'price' => 0,
         ]);
         DB::table('feature_prices')->insert([
-            'fabric_type_id' => 1, 
-            'feature_option_id' => 4, 
+            'fabric_type_id' => 1,
+            'feature_option_id' => 4,
             'price' => 250000,
         ]);
         DB::table('feature_prices')->insert([
-            'fabric_type_id' => 1, 
-            'feature_option_id' => 5, 
+            'fabric_type_id' => 1,
+            'feature_option_id' => 5,
             'price' => 0,
         ]);
         DB::table('feature_prices')->insert([
-            'fabric_type_id' => 1, 
-            'feature_option_id' => 6, 
+            'fabric_type_id' => 1,
+            'feature_option_id' => 6,
             'price' => 0,
         ]);
         DB::table('feature_prices')->insert([
-            'fabric_type_id' => 1, 
-            'feature_option_id' => 7, 
+            'fabric_type_id' => 1,
+            'feature_option_id' => 7,
             'price' => 0,
         ]);
         DB::table('feature_prices')->insert([
-            'fabric_type_id' => 1, 
-            'feature_option_id' => 8, 
+            'fabric_type_id' => 1,
+            'feature_option_id' => 8,
             'price' => 0,
         ]);
         DB::table('feature_prices')->insert([
-            'fabric_type_id' => 1, 
-            'feature_option_id' => 9, 
+            'fabric_type_id' => 1,
+            'feature_option_id' => 9,
             'price' => 0,
         ]);
         DB::table('feature_prices')->insert([
-            'fabric_type_id' => 1, 
-            'feature_option_id' => 10, 
+            'fabric_type_id' => 1,
+            'feature_option_id' => 10,
             'price' => 0,
         ]);
         DB::table('feature_prices')->insert([
-            'fabric_type_id' => 1, 
-            'feature_option_id' => 11, 
+            'fabric_type_id' => 1,
+            'feature_option_id' => 11,
             'price' => 0,
         ]);
         DB::table('feature_prices')->insert([
-            'fabric_type_id' => 1, 
-            'feature_option_id' => 12, 
+            'fabric_type_id' => 1,
+            'feature_option_id' => 12,
             'price' => 0,
         ]);
         DB::table('feature_prices')->insert([
-            'fabric_type_id' => 1, 
-            'feature_option_id' => 13, 
+            'fabric_type_id' => 1,
+            'feature_option_id' => 13,
             'price' => 0,
         ]);
         DB::table('feature_prices')->insert([
-            'fabric_type_id' => 1, 
-            'feature_option_id' => 14, 
+            'fabric_type_id' => 1,
+            'feature_option_id' => 14,
             'price' => 0,
         ]);
         DB::table('feature_prices')->insert([
-            'fabric_type_id' => 1, 
-            'feature_option_id' => 15, 
+            'fabric_type_id' => 1,
+            'feature_option_id' => 15,
             'price' => 0,
         ]);
         DB::table('feature_prices')->insert([
-            'fabric_type_id' => 1, 
-            'feature_option_id' => 16, 
+            'fabric_type_id' => 1,
+            'feature_option_id' => 16,
             'price' => 0,
         ]);
         DB::table('feature_prices')->insert([
-            'fabric_type_id' => 1, 
-            'feature_option_id' => 17, 
+            'fabric_type_id' => 1,
+            'feature_option_id' => 17,
             'price' => 0,
         ]);
         DB::table('feature_prices')->insert([
-            'fabric_type_id' => 1, 
-            'feature_option_id' => 18, 
+            'fabric_type_id' => 1,
+            'feature_option_id' => 18,
             'price' => 775000,
         ]);
         DB::table('feature_prices')->insert([
-            'fabric_type_id' => 1, 
-            'feature_option_id' => 19, 
+            'fabric_type_id' => 1,
+            'feature_option_id' => 19,
             'price' => 0,
         ]);
         DB::table('feature_prices')->insert([
-            'fabric_type_id' => 1, 
-            'feature_option_id' => 20, 
+            'fabric_type_id' => 1,
+            'feature_option_id' => 20,
             'price' => 695000,
         ]);
         DB::table('feature_prices')->insert([
-            'fabric_type_id' => 1, 
-            'feature_option_id' => 21, 
+            'fabric_type_id' => 1,
+            'feature_option_id' => 21,
             'price' => 0,
         ]);
         DB::table('feature_prices')->insert([
-            'fabric_type_id' => 1, 
-            'feature_option_id' => 22, 
+            'fabric_type_id' => 1,
+            'feature_option_id' => 22,
             'price' => 350000,
         ]);
         DB::table('feature_prices')->insert([
-            'fabric_type_id' => 1, 
-            'feature_option_id' => 23, 
+            'fabric_type_id' => 1,
+            'feature_option_id' => 23,
             'price' => 0,
         ]);
         DB::table('feature_prices')->insert([
-            'fabric_type_id' => 1, 
-            'feature_option_id' => 24, 
+            'fabric_type_id' => 1,
+            'feature_option_id' => 24,
             'price' => 25000,
         ]);
         DB::table('feature_prices')->insert([
-            'fabric_type_id' => 1, 
-            'feature_option_id' => 25, 
+            'fabric_type_id' => 1,
+            'feature_option_id' => 25,
             'price' => 0,
         ]);
         DB::table('feature_prices')->insert([
-            'fabric_type_id' => 1, 
-            'feature_option_id' => 26, 
+            'fabric_type_id' => 1,
+            'feature_option_id' => 26,
             'price' => 100000,
         ]);
     }
