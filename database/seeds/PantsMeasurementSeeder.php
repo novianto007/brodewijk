@@ -61,5 +61,15 @@ class PantsMeasurementSeeder extends Seeder
             'ankle' => 6,
             'pants_hips' => 7,
         ]);
+
+        DB::table('pants_measurements')->insert([
+            'pants_length' => 6,
+            'trouser_waist' => 2,
+            'crotch' => 3,
+            'thigh' => 4,
+            'knee' => 5,
+            'ankle' => 6,
+            'pants_hips' => 7,
+        ]);
     }
 }

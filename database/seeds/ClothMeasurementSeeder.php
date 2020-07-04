@@ -81,5 +81,19 @@ class ClothMeasurementSeeder extends Seeder
             'front_chest' => 10,
             'back_chest' => 11,
         ]);
+
+        DB::table('cloth_measurements')->insert([
+            'front_length' => 6,
+            'shoulder_width' => 2,
+            'sleeve_length' => 3,
+            'chest' => 4,
+            'waist' => 5,
+            'hips' => 6,
+            'armpits' => 7,
+            'biceps' => 8,
+            'wrist' => 9,
+            'front_chest' => 10,
+            'back_chest' => 11,
+        ]);
     }
 }

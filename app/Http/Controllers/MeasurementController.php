@@ -32,6 +32,6 @@ class MeasurementController extends Controller
 
         $fitOption = FitOption::all();
         $data['standard_size'] = FitOptionResource::collection($fitOption);
-        return $this->response(false, 'sucess', $data);
+        return $this->response(false, 'success', $data);
     }
 }
