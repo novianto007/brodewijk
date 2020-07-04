@@ -20,6 +20,7 @@ $router->group(['prefix' => 'customer/api'], function () use ($router) {
     $router->get("/fabric/{categorySlug}[/{productSlug}]", "FabricController@getAll");
     $router->get("/feature/{categorySlug}[/{productSlug}]", "FabricController@getFeature");
     $router->get("/measurement", "MeasurementController@getAll");
+    $router->post("/add-to-cart", "OrderController@addToCart");
 });
 
 $router->post("/upload/{id}", "FabricColorController@upload");

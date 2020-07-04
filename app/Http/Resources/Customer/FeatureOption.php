@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources\Customer;
 
-use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\BaseResource;
 
-class FeatureOption extends JsonResource
+class FeatureOption extends BaseResource
 {
     /**
      * Transform the resource into an array.
@@ -17,6 +17,7 @@ class FeatureOption extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'selected' => $this->id == $this->extraField->option_value,
             'image' => $this->image,
             'is_has_child' => $this->is_has_child,
             'description' => $this->description,
@@ -24,20 +25,27 @@ class FeatureOption extends JsonResource
             'code_name' => $this->code_name,
             'resource_depend' => $this->resource_depend,
             'prices' => FeaturePrice::collection($this->featurePrices),
-            'childs' => $this->when($this->is_has_child, FeatureOptionChild::collection($this->featureOptionChildren)),
+            'childs' => $this->when($this->is_has_child, FeatureOptionChild::collection($this->featureOptionChildren)->addExtraField($this->extraField)),
         ];
     }
 
-    private function getResource(){     
-        $resourceList = (unserialize($this->resources))?unserialize($this->resources):[];
+    public static function collection($resource)
+    {
+        return new FeatureOptionCollection($resource);
+    }
+
+    private function getResource()
+    {
+        $resourceList = (unserialize($this->resources)) ? unserialize($this->resources) : [];
         return $this->generateWithDepend($resourceList);
     }
 
-    private function generateWithDepend($imageResources){
-        if($this->resource_depend){
+    private function generateWithDepend($imageResources)
+    {
+        if ($this->resource_depend) {
             $newResourceList = [];
-            foreach($this->depend->featureOptions as $option){
-                foreach($imageResources as $key => $val){
+            foreach ($this->depend->featureOptions as $option) {
+                foreach ($imageResources as $key => $val) {
                     $imageResources[$key] = str_replace('{depend}', $option->code_name, $val);
                 }
                 $newResourceList[$option->code_name] = $imageResources;

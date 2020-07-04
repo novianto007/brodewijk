@@ -23,7 +23,7 @@ class ProductFeatureSeeder extends Seeder
         DB::table('product_features')->insert([
             'product_id' => 1,
             'feature_id' => 2,
-            'option_value' => 2,
+            'option_value' => 3,
             'child_value' => null,
             'string_value' => null
         ]);

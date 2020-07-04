@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources\Customer;
 
-use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\BaseResource;
 
-class FeatureOptionChild extends JsonResource
+class FeatureOptionChild extends BaseResource
 {
     /**
      * Transform the resource into an array.
@@ -16,9 +16,15 @@ class FeatureOptionChild extends JsonResource
     {
         return [
             'id' => $this->id,
+            'selected' => $this->id == $this->extraField->child_value,
             'name' => $this->name,
             'image' => $this->image,
             'resources' => $this->resources,
         ];
+    }
+
+    public static function collection($resource)
+    {
+        return new FeatureOptionChildCollection($resource);
     }
 }

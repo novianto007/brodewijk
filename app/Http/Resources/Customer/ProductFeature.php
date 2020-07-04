@@ -19,7 +19,7 @@ class ProductFeature extends BaseResource
             'name' => $this->feature->name,
             'type' => $this->feature->type,
             'description' => $this->feature->description,
-            'options' => FeatureOption::collection($this->feature->featureOptions),
+            'options' => FeatureOption::collection($this->feature->featureOptions)->addExtraField($this),
         ];
     }
 }
