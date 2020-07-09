@@ -13,7 +13,7 @@ class FabricType extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'base_price', 'category_id'
+        'name', 'base_price', 'extra_price', 'category_id'
     ];
     /**
      * The attributes excluded from the model's JSON form.

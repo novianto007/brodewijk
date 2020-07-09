@@ -18,6 +18,7 @@ class TableFabricType extends Migration
             $table->bigInteger("category_id");
             $table->string("name", 100);
             $table->double("base_price");
+            $table->double("extra_price");
             $table->timestamps();
         });
     }

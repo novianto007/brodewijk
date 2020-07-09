@@ -20,6 +20,7 @@ class FabricTypeController extends Controller
             'category_id' => 'required|integer|exists:categories,id',
             'name' => 'required|string',
             'base_price' => 'required|numeric',
+            'extra_price' => 'required|numeric',
             'features' => 'required|array',
         ]);
 
