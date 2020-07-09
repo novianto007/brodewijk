@@ -19,7 +19,7 @@ class TableFabricColor extends Migration
             $table->string("name", 100);
             $table->string("image", 200);
             $table->string("code", 80)->nullable();
-            $table->string("path", 250);
+            $table->string("path", 250)->nullable();
             $table->timestamps();
         });
     }

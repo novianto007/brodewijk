@@ -24,3 +24,6 @@ $router->group(['prefix' => 'customer/api'], function () use ($router) {
 });
 
 $router->post("/upload/{id}", "FabricColorController@upload");
+$router->post("/fabric-type", "FabricTypeController@store");
+$router->post("/fabric", "FabricController@store");
+$router->post("/fabric-color", "FabricColorController@store");

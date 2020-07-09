@@ -27,6 +27,11 @@ class FabricType extends Model
         return $this->hasMany(Fabric::class);
     }
 
+    public function featurePrices()
+    {
+        return $this->hasMany(FeaturePrice::class);
+    }
+
     public function category()
     {
         return $this->belongsTo(category::class);

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Fabric;
+use App\FabricType;
 use App\Http\Resources\Customer\Fabric as FabricResource;
 use App\Http\Resources\Customer\Product as ProductResource;
 use App\Http\Resources\Customer\ProductFeature as ProductFeatureResource;
 use App\Product;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -53,6 +55,22 @@ class FabricController extends Controller
             Cache::put($cacheKey, $data, 1);
         }
         return $this->response(false, 'success', $data);
+    }
+
+    public function store(Request $request)
+    {
+        $fabricInput = $request->all();
+        $this->customValidate($request, $fabricInput, [
+            'fabric_type_id' => 'required|integer|exists:fabric_types,id',
+            'name' => 'required|string',
+            'brand' => 'required|string',
+            'grade' => 'required|string',
+            'description' => 'string'
+        ]);
+
+        $fabric = Fabric::create($fabricInput);
+
+        return $this->response(false, 'success', $fabric);
     }
 
     protected function findProduct($categorySlug, $productSlug)
