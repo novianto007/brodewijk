@@ -15,7 +15,7 @@ class TableOrderMeasurement extends Migration
     {
         Schema::create('order_measurements', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('order_id');
+            $table->bigInteger('order_product_id');
             $table->string('method', 20);
             $table->bigInteger('standard_measurement_id')->nullable();
             $table->bigInteger('fit_option_id');

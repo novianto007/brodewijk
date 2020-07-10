@@ -13,7 +13,7 @@ class OrderMeasurementSeeder extends Seeder
     public function run()
     {
         DB::table('order_measurements')->insert([
-            'order_id' => 1,
+            'order_product_id' => 1,
             'method' => 'manual',
             'standard_measurement_id' => null,
             'fit_option_id' => 1,

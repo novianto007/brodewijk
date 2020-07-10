@@ -13,12 +13,8 @@ class OrderSeeder extends Seeder
     public function run()
     {
         DB::table('orders')->insert([
-            'category_id' => 1,
-            'product_id' => 1,
             'customer_id' => 1,
-            'is_customized' => 0,
-            'price' => 2110000,
-            'note' => '',
+            'total_price' => 2110000,
             'status' => 0
         ]);
     }

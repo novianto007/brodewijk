@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class OrderFabricSeeder extends Seeder
+class OrderProductSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,11 +12,14 @@ class OrderFabricSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('order_fabrics')->insert([
+        DB::table('order_products')->insert([
             'order_id' => 1,
-            'fabric_id' => 1,
+            'product_id' => 1,
+            'product_price' => 2110000,
+            'is_customized' => false,
             'fabric_color_id' => 1,
-            'price' => 2110000,
+            'fabric_price' => 2110000,
+            'note' => '',
         ]);
     }
 }

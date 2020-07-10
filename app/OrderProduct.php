@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class OrderFabric extends Model
+class OrderProduct extends Model
 {
 
     /**
@@ -13,7 +13,7 @@ class OrderFabric extends Model
      * @var array
      */
     protected $fillable = [
-        'order_id', 'fabric_id', 'fabric_color_id', 'price'
+        'order_id', 'product_id', 'product_price', 'is_customized', 'fabric_color_id', 'fabric_price', 'note'
     ];
 
     /**
@@ -26,5 +26,10 @@ class OrderFabric extends Model
     public function orderFeatures()
     {
         return $this->hasMany(OrderFeature::class);
+    }
+
+    public function orderMeasurement()
+    {
+        return $this->hasOne(OrderMeasurement::class);
     }
 }

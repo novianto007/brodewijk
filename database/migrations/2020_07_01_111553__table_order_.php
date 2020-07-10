@@ -15,12 +15,8 @@ class TableOrder extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('category_id');
-            $table->bigInteger('product_id');
             $table->bigInteger('customer_id');
-            $table->boolean('is_customized');
-            $table->text('note');
-            $table->double('price');
+            $table->double('total_price');
             $table->integer('status')->default(0);
             $table->timestamps();
         });

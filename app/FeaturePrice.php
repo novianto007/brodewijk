@@ -32,4 +32,9 @@ class FeaturePrice extends Model
     {
         return $this->belongsTo(FeatureOption::class);
     }
+
+    public static function getByOptionAndFabricType($option, $fabricType)
+    {
+        return self::where('feature_option_id', $option)->where('fabric_type_id', $fabricType)->first();
+    }
 }

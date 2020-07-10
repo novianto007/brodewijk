@@ -15,7 +15,7 @@ class TableOrderFeature extends Migration
     {
         Schema::create('order_features', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('order_fabric_id');
+            $table->bigInteger('order_product_id');
             $table->bigInteger('feature_id');
             $table->bigInteger('option_value')->nullable();
             $table->bigInteger('child_value')->nullable();

@@ -13,7 +13,7 @@ class OrderMeasurement extends Model
      * @var array
      */
     protected $fillable = [
-        'order_id', 'method', 'standard_measurement_id', 'fit_option_id', 'height', 'weight', 'cloth_measurement_id', 'pants_measurement_id'
+        'order_product_id', 'method', 'standard_measurement_id', 'fit_option_id', 'height', 'weight', 'cloth_measurement_id', 'pants_measurement_id'
     ];
 
     /**

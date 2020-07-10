@@ -30,4 +30,10 @@ class Fabric extends Model
     {
         return $this->belongsTo(FabricType::class);
     }
+
+    public static function getByFabricColor($fabricColorId)
+    {
+        return self::where('fabric_colors.id', $fabricColorId)
+            ->leftJoin('fabric_colors', 'fabric_colors.fabric_id', '=', 'fabrics.id')->first();
+    }
 }

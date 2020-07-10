@@ -31,6 +31,6 @@ class DatabaseSeeder extends Seeder
         $this->call('OrderSeeder');
         $this->call('OrderFeatureSeeder');
         $this->call('OrderMeasurementSeeder');
-        $this->call('OrderFabricSeeder');
+        $this->call('OrderProductSeeder');
     }
 }

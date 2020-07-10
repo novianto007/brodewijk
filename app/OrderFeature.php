@@ -13,7 +13,7 @@ class OrderFeature extends Model
      * @var array
      */
     protected $fillable = [
-        'order_fabric_id', 'feature_id', 'option_value', 'child_value', 'string_value', 'price'
+        'order_product_id', 'feature_id', 'option_value', 'child_value', 'string_value', 'price'
     ];
 
     /**

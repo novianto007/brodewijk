@@ -10,8 +10,6 @@ use App\Order;
 use App\PantsMeasurement;
 use App\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
 class OrderController extends Controller
@@ -23,54 +21,36 @@ class OrderController extends Controller
 
     public function addToCart(Request $request)
     {
-        $orderInput = $this->validateOrder($request);
-
-        $fabric = Fabric::where('fabric_colors.id', $request['fabric_color_id'])
-            ->leftJoin('fabric_colors', 'fabric_colors.fabric_id', '=', 'fabrics.id')->first();
+        $productInput = $this->validateProduct($request);
+        $fabric = Fabric::getByFabricColor($request['fabric_color_id']);
         $product = Product::find($request['product_id']);
-
-        $features = $this->validateFeatures($request, $fabric);
-
+        $featuresInput = $this->validateFeatures($request, $fabric->fabric_type_id);
         $measurementInput = $this->validateMeasurement($request);
+        $extraPrice = 0;
 
         if (in_array($product->category->type, ['suit', 'cloth'])) {
             $cloth = $this->validateCloth($request, $measurementInput);
+            if (ClothMeasurement::isExtraSize($cloth['shoulder_width'])) {
+                $extraPrice += $fabric->fabricType->extra_price;
+            }
         }
 
         if (in_array($product->category->type, ['suit', 'pants'])) {
             $pants = $this->validatePants($request, $measurementInput);
+            if (PantsMeasurement::isExtraSize($pants['trouser_waist'])) {
+                $extraPrice += $fabric->fabricType->extra_price;
+            }
         }
-
-        $order = DB::transaction(function () use ($orderInput, $measurementInput, $product, $fabric, $features, $cloth, $pants) {
-            $orderInput['category_id'] = $product->category_id;
-            $orderInput['price'] = $fabric->fabricType->base_price + $features['totalPrice'];
-            $order = Order::create($orderInput);
-            $orderFabric = $order->orderFabric()->create([
-                'fabric_id' => $fabric->id,
-                'fabric_color_id' => $orderInput['fabric_color_id'],
-                'price' => $fabric->fabricType->base_price,
-            ]);
-            $orderFabric->orderFeatures()->createMany($features['features']);
-            $measurement = $order->orderMeasurement()->create($measurementInput);
-            if ($cloth) {
-                $cloth = ClothMeasurement::create($cloth);
-                $measurement->clothMeasurement()->associate($cloth);
-            }
-            if ($pants) {
-                $pants = PantsMeasurement::create($pants);
-                $measurement->pantsMeasurement()->associate($pants);
-            }
-            $measurement->save();
-            return $order;
-        });
-
+        $productInput['fabric_price'] = $fabric->fabricType->base_price;
+        $productInput['product_price'] = $productInput['fabric_price'] + $featuresInput['totalPrice'] + $extraPrice;
+        $order = Order::saveCart($productInput, $measurementInput, $featuresInput['features'], $cloth, $pants);
         return $this->response(false, "success", $order);
     }
 
-    private function validateOrder($request)
+    private function validateProduct($request)
     {
-        $order = $request->all();
-        $this->customValidate($request, $order, [
+        $input = $request->all();
+        $this->customValidate($request, $input, [
             'fabric_color_id' => 'required|integer|exists:fabric_colors,id',
             'product_id' => 'required|integer|exists:products,id',
             'is_customized' => 'required|boolean',
@@ -78,8 +58,7 @@ class OrderController extends Controller
             'features' => 'required|array',
             'measurement' => 'required|array',
         ]);
-        $order['customer_id'] = Auth::user()->id;
-        return $order;
+        return $input;
     }
 
     private function validateMeasurement($request)
@@ -131,7 +110,7 @@ class OrderController extends Controller
         return $cloth;
     }
 
-    private function validateFeatures(Request $request, $fabric)
+    private function validateFeatures(Request $request, $fabricTypeId)
     {
         $features = $request['features'];
         $this->customValidate($request, compact('features'), [
@@ -143,16 +122,14 @@ class OrderController extends Controller
         $error = [];
         $totalPrice = 0;
         for ($i = 0; $i < sizeof($features); $i++) {
-            $price = FeaturePrice::where('feature_option_id', $features[$i]['option_value'])
-                ->where('fabric_type_id', $fabric->fabric_type_id)->first();
-            if (!$price) {
+            $featurePrice = FeaturePrice::getByOptionAndFabricType($features[$i]['option_value'], $fabricTypeId);
+            if (!$featurePrice) {
                 $error['option_value'] = 'invalid option value';
                 break;
             }
-            $features[$i]['price'] = $price->price;
-            $feature = $price->featureOption->feature;
-            $features[$i]["feature_id"] = $feature->id;
-            if ($price->featureOption->is_has_child) {
+            $features[$i]['price'] = $featurePrice->price;
+            $features[$i]["feature_id"] = $featurePrice->featureOption->feature->id;
+            if ($featurePrice->featureOption->is_has_child) {
                 $child = FeatureOptionChild::find($features[$i]['child_value']);
                 if (!$child) {
                     $error['child_value'] = 'invalid child value';
@@ -160,15 +137,15 @@ class OrderController extends Controller
                 }
             }
 
-            if ($feature->type == 'value') {
-                if ($price->featureOption->name == "Add") {
+            if ($featurePrice->featureOption->feature->type == 'value') {
+                if ($featurePrice->featureOption->name == "Add") {
                     if (!$features[$i]['string_value']) {
                         $error['string_value'] = 'invalid child value';
                         break;
                     }
                 }
             }
-            $totalPrice += $price->price;
+            $totalPrice += $featurePrice->price;
         }
         $this->checkError($request, $error);
         return compact('totalPrice', 'features');

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ClothMeasurement extends Model
 {
-
+    public static $MAX_SHOULDER_WIDTH = 47;
     /**
      * The attributes that are mass assignable.
      *
@@ -21,4 +21,12 @@ class ClothMeasurement extends Model
      * @var array
      */
     protected $hidden = [];
+
+    public static function isExtraSize($size)
+    {
+        if ($size > self::$MAX_SHOULDER_WIDTH) {
+            return true;
+        }
+        return false;
+    }
 }
