@@ -6,10 +6,13 @@ use App\ClothMeasurement;
 use App\Fabric;
 use App\FeatureOptionChild;
 use App\FeaturePrice;
+use App\Http\Resources\Customer\Cart;
 use App\Order;
+use App\OrderMeasurement;
+use App\OrderProduct;
 use App\PantsMeasurement;
-use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
 class OrderController extends Controller
@@ -23,28 +26,56 @@ class OrderController extends Controller
     {
         $productInput = $this->validateProduct($request);
         $fabric = Fabric::getByFabricColor($request['fabric_color_id']);
-        $product = Product::find($request['product_id']);
         $featuresInput = $this->validateFeatures($request, $fabric->fabric_type_id);
-        $measurementInput = $this->validateMeasurement($request);
-        $extraPrice = 0;
 
-        if (in_array($product->category->type, ['suit', 'cloth'])) {
-            $cloth = $this->validateCloth($request, $measurementInput);
+        $productInput['fabric_price'] = $fabric->fabricType->base_price;
+        $productInput['product_price'] = $productInput['fabric_price'] + $featuresInput['totalPrice'];
+        $productInput['description'] = $featuresInput['description'];
+
+        $order = Order::saveCart($productInput, $featuresInput['features'], Auth::user()->id);
+
+        return $this->response(false, "success", $order);
+    }
+
+    public function getCart()
+    {
+        $order = Order::getCartData(Auth::user()->id);
+        if ($order == null) {
+            return $this->response(false, "cart is empty", null);
+        }
+        return $this->response(false, "success", new Cart($order));
+    }
+
+    public function addMeasurement(Request $request, $id)
+    {
+        $measurement = $this->validateMeasurement($request);
+        $orderProduct = OrderProduct::find($id);
+        if ($orderProduct == null) {
+            return $this->response(true, "cart item not found", null, 404);
+        }
+        $measurement['order_product_id'] = $id;
+        $fabric = Fabric::getByFabricColor($orderProduct->fabric_color_id);
+        $extraPrice = 0;
+        if (in_array($orderProduct->product->category->type, ['suit', 'cloth'])) {
+            $cloth = $this->validateCloth($request, $measurement);
             if (ClothMeasurement::isExtraSize($cloth['shoulder_width'])) {
                 $extraPrice += $fabric->fabricType->extra_price;
             }
         }
 
-        if (in_array($product->category->type, ['suit', 'pants'])) {
-            $pants = $this->validatePants($request, $measurementInput);
+        if (in_array($orderProduct->product->category->type, ['suit', 'pants'])) {
+            $pants = $this->validatePants($request, $measurement);
             if (PantsMeasurement::isExtraSize($pants['trouser_waist'])) {
                 $extraPrice += $fabric->fabricType->extra_price;
             }
         }
-        $productInput['fabric_price'] = $fabric->fabricType->base_price;
-        $productInput['product_price'] = $productInput['fabric_price'] + $featuresInput['totalPrice'] + $extraPrice;
-        $order = Order::saveCart($productInput, $measurementInput, $featuresInput['features'], $cloth, $pants);
-        return $this->response(false, "success", $order);
+        $orderMeasurement = OrderMeasurement::findByOrderProductId($id);
+        if($orderMeasurement){
+            $orderMeasurement->updateCart($measurement, $cloth, $pants, $extraPrice);
+        }else{
+            $orderMeasurement = OrderMeasurement::saveCart($measurement, $cloth, $pants, $extraPrice);
+        }
+        return $this->response(false, "success", $orderMeasurement);
     }
 
     private function validateProduct($request)
@@ -63,17 +94,16 @@ class OrderController extends Controller
 
     private function validateMeasurement($request)
     {
-        $measurement = $request['measurement'];
-        $this->customValidate($request, compact('measurement'), [
-            'measurement.method' => 'required|in:manual,standard',
-            'measurement.standard_measurement_id' => 'required_if:measurement.method,standard',
-            'measurement.fit_option_id' => 'required|integer',
-            'measurement.height' => 'required|numeric',
-            'measurement.weight' => 'required|numeric',
-            'measurement.cloth' => 'nullable|array',
-            'measurement.pants' => 'nullable|array',
+        $this->customValidate($request, $request->all(), [
+            'method' => 'required|in:manual,standard',
+            'standard_measurement_id' => 'required_if:method,standard',
+            'fit_option_id' => 'required|integer',
+            'height' => 'required|numeric',
+            'weight' => 'required|numeric',
+            'cloth' => 'nullable|array',
+            'pants' => 'nullable|array',
         ]);
-        return $measurement;
+        return $request->all();
     }
 
     private function validatePants($request, $measurement)
@@ -121,6 +151,7 @@ class OrderController extends Controller
 
         $error = [];
         $totalPrice = 0;
+        $description = '';
         for ($i = 0; $i < sizeof($features); $i++) {
             $featurePrice = FeaturePrice::getByOptionAndFabricType($features[$i]['option_value'], $fabricTypeId);
             if (!$featurePrice) {
@@ -143,12 +174,15 @@ class OrderController extends Controller
                         $error['string_value'] = 'invalid child value';
                         break;
                     }
+                    $description .= $featurePrice->featureOption->feature->name . ', ';
                 }
+            } else {
+                $description .= $featurePrice->featureOption->name . ', ';
             }
             $totalPrice += $featurePrice->price;
         }
         $this->checkError($request, $error);
-        return compact('totalPrice', 'features');
+        return compact('totalPrice', 'features', 'description');
     }
 
     private function checkError($request, $error)

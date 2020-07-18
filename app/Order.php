@@ -26,9 +26,9 @@ class Order extends Model
      */
     protected $hidden = [];
 
-    public function orderProduct()
+    public function orderProducts()
     {
-        return $this->hasOne(OrderProduct::class);
+        return $this->hasMany(OrderProduct::class);
     }
 
     public static function getCartData($customerId)
@@ -40,22 +40,12 @@ class Order extends Model
         return $order;
     }
 
-    public static function saveCart($product, $measurement, $features, $cloth, $pants)
+    public static function saveCart($product, $features, $customerId)
     {
-        return DB::transaction(function () use ($product, $measurement, $features, $cloth, $pants) {
-            $order = self::getCartData(Auth::user()->id);
-            $orderProduct = $order->orderProduct()->create($product);
+        return DB::transaction(function () use ($product, $features, $customerId) {
+            $order = self::getCartData($customerId);
+            $orderProduct = $order->orderProducts()->create($product);
             $orderProduct->orderFeatures()->createMany($features);
-            $measurement = $orderProduct->orderMeasurement()->create($measurement);
-            if ($cloth) {
-                $cloth = ClothMeasurement::create($cloth);
-                $measurement->clothMeasurement()->associate($cloth);
-            }
-            if ($pants) {
-                $pants = PantsMeasurement::create($pants);
-                $measurement->pantsMeasurement()->associate($pants);
-            }
-            $measurement->save();
             $order->total_price += $orderProduct->product_price;
             $order->save();
             return $order;

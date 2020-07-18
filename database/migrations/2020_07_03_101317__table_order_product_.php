@@ -17,7 +17,10 @@ class TableOrderProduct extends Migration
             $table->id();
             $table->bigInteger('order_id');
             $table->bigInteger('product_id');
+            $table->string('image')->nullable();
+            $table->text('description');
             $table->double('product_price');
+            $table->double('extra_price')->default(0);
             $table->boolean('is_customized');
             $table->bigInteger('fabric_color_id');
             $table->double('fabric_price');

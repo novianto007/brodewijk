@@ -23,6 +23,8 @@ $router->group(['prefix' => 'customer/api'], function () use ($router) {
     $router->get("/feature/{categorySlug}[/{productSlug}]", "FabricController@getFeature");
     $router->get("/measurement", "MeasurementController@getAll");
     $router->post("/add-to-cart", "OrderController@addToCart");
+    $router->post("/add-measurement/{id}", "OrderController@addMeasurement");
+    $router->get("/get-cart", "OrderController@getCart");
 });
 
 $router->post("/upload/{id}", "FabricColorController@upload");
