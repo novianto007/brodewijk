@@ -25,6 +25,11 @@ $router->group(['prefix' => 'customer/api'], function () use ($router) {
     $router->post("/add-to-cart", "OrderController@addToCart");
     $router->post("/add-measurement/{id}", "OrderController@addMeasurement");
     $router->get("/get-cart", "OrderController@getCart");
+    $router->get("/provinces", "AddressController@getProvinces");
+    $router->get("/cities/{provinceId}", "AddressController@getCities");
+    $router->get("/districts/{cityId}", "AddressController@getDistricts");
+    $router->post("/address", "AddressController@store");
+    $router->get("/address", "AddressController@getAll");
 });
 
 $router->post("/upload/{id}", "FabricColorController@upload");

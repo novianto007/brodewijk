@@ -24,6 +24,6 @@ class CustomerController extends Controller
      */
     public function profile()
     {
-        return $this->response(false, 'sucess', Auth::user());
+        return $this->response(false, 'success', Auth::user());
     }
 }
