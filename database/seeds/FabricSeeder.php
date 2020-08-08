@@ -17,7 +17,8 @@ class FabricSeeder extends Seeder
             'name' => 'Hagebridge Wool',
             'brand' => 'Gino Ferucci',
             'grade' => 'Super 200s Wool',
-            'description' => 'Cool in Summer, Warm in Winter, Easy to maintain, Wrinkle Free; Best for Wedding, Business, Party, Graduation'
+            'description' => 'Cool in Summer, Warm in Winter, Easy to maintain, Wrinkle Free; Best for Wedding, Business, Party, Graduation',
+            'description_id' => 'Sejuk di Musim Panas, Hangat di Musim Dingin, Mudah dirawat, Bebas Kerut; Terbaik untuk Pernikahan, Bisnis, Pesta, Wisuda'
         ]);
 
         DB::table('fabrics')->insert([
@@ -25,7 +26,8 @@ class FabricSeeder extends Seeder
             'name' => 'Vanelli',
             'brand' => 'Giovanelli Biella Tuxedo Italy',
             'grade' => 'Super 200s Wool',
-            'description' => 'Solid Colour, Warmer, Easy to maintain, Wrinkle Free; Best for Wedding, Business, Party, Graduation'
+            'description' => 'Solid Colour, Warmer, Easy to maintain, Wrinkle Free; Best for Wedding, Business, Party, Graduation',
+            'description_id' => 'Warna Solid, Hangat, Mudah dirawat, Bebas Kerut; Terbaik untuk Pernikahan, Bisnis, Pesta, Wisuda'
         ]);
     }
 }

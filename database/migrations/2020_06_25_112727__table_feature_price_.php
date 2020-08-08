@@ -18,6 +18,7 @@ class TableFeaturePrice extends Migration
             $table->bigInteger("fabric_type_id");
             $table->bigInteger("feature_option_id");
             $table->double("price");
+            $table->double("price_margin");
             $table->timestamps();
         });
     }
