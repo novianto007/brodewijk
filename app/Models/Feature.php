@@ -1,19 +1,21 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class FabricColor extends Model
+class Feature extends Model
 {
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'image', 'code', 'fabric_id'
+        'name', 'type', 'description', 'category_id'
     ];
+
     /**
      * The attributes excluded from the model's JSON form.
      *
@@ -21,8 +23,13 @@ class FabricColor extends Model
      */
     protected $hidden = [];
 
-    public function fabric()
+    public function category()
     {
-        return $this->belongsTo(Fabric::class);
+        return $this->belongsTo(Category::class);
+    }
+
+    public function featureOptions()
+    {
+        return $this->hasMany(FeatureOption::class);
     }
 }

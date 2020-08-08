@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Address;
-use App\City;
-use App\District;
-use App\Province;
+use App\Models\Address;
+use App\Models\City;
+use App\Models\District;
+use App\Models\Province;
 use App\Http\Resources\Customer\Address as AddressResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

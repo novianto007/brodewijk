@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\ClothMeasurement;
-use App\Fabric;
-use App\FeatureOptionChild;
-use App\FeaturePrice;
+use App\Models\ClothMeasurement;
+use App\Models\Fabric;
+use App\Models\FeatureOptionChild;
+use App\Models\FeaturePrice;
 use App\Http\Resources\Customer\Cart;
-use App\Order;
-use App\OrderMeasurement;
-use App\OrderProduct;
-use App\PantsMeasurement;
+use App\Models\Order;
+use App\Models\OrderMeasurement;
+use App\Models\OrderProduct;
+use App\Models\PantsMeasurement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;

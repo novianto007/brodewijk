@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class FeatureOptionChild extends Model
+class FitOption extends Model
 {
 
     /**
@@ -13,9 +13,8 @@ class FeatureOptionChild extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'image', 'resources', 'feature_option_id'
+        'name', 'description'
     ];
-
     /**
      * The attributes excluded from the model's JSON form.
      *
@@ -23,8 +22,13 @@ class FeatureOptionChild extends Model
      */
     protected $hidden = [];
 
-    public function featureOption()
+    public function defaultMeasurements()
     {
-        return $this->belongsTo(FeatureOption::class);
+        return $this->hasMany(DefaultMeasurement::class);
+    }
+
+    public function orderedDefaultMeasurement()
+    {
+        return DefaultMeasurement::findByOptionIdWithOrder($this->id);
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class OrderFeature extends Model
 {
 
     /**
@@ -13,17 +13,13 @@ class Category extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'type', 'resources', 'slug'
+        'order_product_id', 'feature_id', 'option_value', 'child_value', 'string_value', 'price'
     ];
+
     /**
      * The attributes excluded from the model's JSON form.
      *
      * @var array
      */
     protected $hidden = [];
-
-    public function fabricTypes()
-    {
-        return $this->hasMany(FabricType::class);
-    }
 }

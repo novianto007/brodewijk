@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\FabricColor;
+use App\Models\FabricColor;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use ZanySoft\Zip\Zip;

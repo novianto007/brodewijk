@@ -1,19 +1,19 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PantsMeasurement extends Model
+class ClothMeasurement extends Model
 {
-    public static $MAX_TROUSER_WAIST = 100;
+    public static $MAX_SHOULDER_WIDTH = 47;
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'pants_length', 'trouser_waist', 'crotch', 'thigh', 'knee', 'ankle', 'pants_hips'
+        'front_length', 'shoulder_width', 'sleeve_length', 'chest', 'waist', 'hips', 'armpits', 'biceps', 'wrist', 'front_chest', 'back_chest'
     ];
     /**
      * The attributes excluded from the model's JSON form.
@@ -24,7 +24,7 @@ class PantsMeasurement extends Model
 
     public static function isExtraSize($size)
     {
-        if ($size > self::$MAX_TROUSER_WAIST) {
+        if ($size > self::$MAX_SHOULDER_WIDTH) {
             return true;
         }
         return false;

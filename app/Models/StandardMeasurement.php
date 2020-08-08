@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class FitOption extends Model
+class StandardMeasurement extends Model
 {
 
     /**
@@ -13,7 +13,7 @@ class FitOption extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'description'
+        'name', 'description', 'order'
     ];
     /**
      * The attributes excluded from the model's JSON form.
@@ -21,9 +21,4 @@ class FitOption extends Model
      * @var array
      */
     protected $hidden = [];
-
-    public function defaultMeasurements()
-    {
-        return $this->hasMany(DefaultMeasurement::class);
-    }
 }

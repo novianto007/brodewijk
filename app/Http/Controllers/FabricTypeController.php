@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\FabricType;
+use App\Models\FabricType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 

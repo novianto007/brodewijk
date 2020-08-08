@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -27,17 +27,17 @@ class SizePreference extends Model
         return $this->belongsTo(FitOption::class);
     }
 
-    public function Customer()
+    public function customer()
     {
         return $this->belongsTo(Customer::class);
     }
 
-    public function ClothMeasurement()
+    public function clothMeasurement()
     {
         return $this->belongsTo(ClothMeasurement::class);
     }
 
-    public function PantsMeasurement()
+    public function pantsMeasurement()
     {
         return $this->belongsTo(PantsMeasurement::class);
     }

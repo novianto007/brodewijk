@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\FitOption;
-use App\SizePreference;
-use Exception;
+use App\Models\FitOption;
+use App\Models\SizePreference;
 use App\Http\Resources\Customer\FitOption as FitOptionResource;
 use App\Http\Resources\Customer\SizePreference as SizePreferenceResource;
-use Tymon\JWTAuth\Facades\JWTAuth;
 
 class MeasurementController extends Controller
 {
@@ -18,16 +16,10 @@ class MeasurementController extends Controller
      */
     public function getAll()
     {
-        try {
-            if ($token = JWTAuth::parseToken()) {
-                $user = JWTAuth::toUser($token);
-                $sizePreference = new SizePreferenceResource(
-                    SizePreference::where('customer_id', $user->id)->first()
-                );
-            }
-        } catch (Exception $e) {
-            $sizePreference = null;
-        }
+        $user = app('auth')->user();
+        $sizePreference = new SizePreferenceResource(
+            SizePreference::where('customer_id', $user->id)->first()
+        );
         $data['preference_size'] = $sizePreference;
 
         $fitOption = FitOption::all();

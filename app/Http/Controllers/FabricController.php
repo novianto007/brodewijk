@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Fabric;
-use App\FabricType;
+use App\Models\Fabric;
 use App\Http\Resources\Customer\Fabric as FabricResource;
 use App\Http\Resources\Customer\Product as ProductResource;
 use App\Http\Resources\Customer\ProductFeature as ProductFeatureResource;
-use App\Product;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;

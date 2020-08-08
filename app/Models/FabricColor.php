@@ -1,19 +1,18 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class StandardMeasurement extends Model
+class FabricColor extends Model
 {
-
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'description', 'order'
+        'name', 'image', 'code', 'fabric_id'
     ];
     /**
      * The attributes excluded from the model's JSON form.
@@ -21,4 +20,9 @@ class StandardMeasurement extends Model
      * @var array
      */
     protected $hidden = [];
+
+    public function fabric()
+    {
+        return $this->belongsTo(Fabric::class);
+    }
 }
