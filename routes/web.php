@@ -19,8 +19,8 @@ $router->group(['prefix' => 'customer/api'], function () use ($router) {
     $router->post("/register", "AuthController@register");
     $router->post("/login", "AuthController@login");
     $router->get("/profile", "CustomerController@profile");
-    $router->get("/fabric/{categorySlug}[/{productSlug}]", "FabricController@getAll");
-    $router->get("/feature/{categorySlug}[/{productSlug}]", "FabricController@getFeature");
+    $router->get("/fabric/{categorySlug}[/{productSlug}]", "ProductController@getFabrics");
+    $router->get("/feature/{categorySlug}[/{productSlug}]", "ProductController@getFeatures");
     $router->get("/measurement", "MeasurementController@getAll");
     $router->post("/add-to-cart", "OrderController@addToCart");
     $router->post("/add-measurement/{id}", "OrderController@addMeasurement");
