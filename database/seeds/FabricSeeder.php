@@ -18,7 +18,7 @@ class FabricSeeder extends Seeder
             'brand' => 'Gino Ferucci',
             'grade' => 'Super 200s Wool',
             'description' => 'Cool in Summer, Warm in Winter, Easy to maintain, Wrinkle Free; Best for Wedding, Business, Party, Graduation',
-            'description_id' => 'Sejuk di Musim Panas, Hangat di Musim Dingin, Mudah dirawat, Bebas Kerut; Terbaik untuk Pernikahan, Bisnis, Pesta, Wisuda'
+            'description_ind' => 'Sejuk di Musim Panas, Hangat di Musim Dingin, Mudah dirawat, Bebas Kerut; Terbaik untuk Pernikahan, Bisnis, Pesta, Wisuda'
         ]);
 
         DB::table('fabrics')->insert([
@@ -27,7 +27,7 @@ class FabricSeeder extends Seeder
             'brand' => 'Giovanelli Biella Tuxedo Italy',
             'grade' => 'Super 200s Wool',
             'description' => 'Solid Colour, Warmer, Easy to maintain, Wrinkle Free; Best for Wedding, Business, Party, Graduation',
-            'description_id' => 'Warna Solid, Hangat, Mudah dirawat, Bebas Kerut; Terbaik untuk Pernikahan, Bisnis, Pesta, Wisuda'
+            'description_ind' => 'Warna Solid, Hangat, Mudah dirawat, Bebas Kerut; Terbaik untuk Pernikahan, Bisnis, Pesta, Wisuda'
         ]);
     }
 }

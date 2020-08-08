@@ -18,7 +18,7 @@ class FeatureOptionSeeder extends Seeder
             'image' => null,
             'is_has_child' => 1,
             'description' => '',
-            'description_id' => '',
+            'description_ind' => '',
             'code_name' => null,
             'resource_depend' => null, 
             'resources' => null
@@ -30,7 +30,7 @@ class FeatureOptionSeeder extends Seeder
             'image' => null,
             'is_has_child' => 1,
             'description' => '<b style="font-weight: 600;">Premium Silk</b>, Cooler, Thermal Comfort, Softer on Your Skin.',
-            'description_id' => 'Sutra Premium, Lebih Dingin, Kenyamanan Termal, Lebih Lembut di Kulit Anda.',
+            'description_ind' => 'Sutra Premium, Lebih Dingin, Kenyamanan Termal, Lebih Lembut di Kulit Anda.',
             'code_name' => null,
             'resource_depend' => null,
             'resources' => null
@@ -42,7 +42,7 @@ class FeatureOptionSeeder extends Seeder
             'image' => 'https://www.brodewijk.com/static/media/construction_unconstructed.2d1b4e1b.png',
             'is_has_child' => 0,
             'description' => '',
-            'description_id' => '',
+            'description_ind' => '',
             'code_name' => null,
             'resource_depend' => null,
             'resources' => null
@@ -54,7 +54,7 @@ class FeatureOptionSeeder extends Seeder
             'image' => 'https://www.brodewijk.com/static/media/construction_full_canvas.df3370de.png',
             'is_has_child' => 0,
             'description' => '',
-            'description_id' => '',
+            'description_ind' => '',
             'code_name' => null,
             'resource_depend' => null,
             'resources' => null
@@ -66,7 +66,7 @@ class FeatureOptionSeeder extends Seeder
             'image' => 'https://www.brodewijk.com/static/media/construction_full_canvas.df3370de.png',
             'is_has_child' => 0,
             'description' => '',
-            'description_id' => '',
+            'description_ind' => '',
             'code_name' => null,
             'resource_depend' => null,
             'resources' => null
@@ -78,7 +78,7 @@ class FeatureOptionSeeder extends Seeder
             'image' => 'https://www.brodewijk.com/static/media/construction_full_canvas.df3370de.png',
             'is_has_child' => 0,
             'description' => '',
-            'description_id' => '',
+            'description_ind' => '',
             'code_name' => null,
             'resource_depend' => null,
             'resources' => null
@@ -90,7 +90,7 @@ class FeatureOptionSeeder extends Seeder
             'image' => 'https://www.brodewijk.com/static/media/notch.50b57eff.png',
             'is_has_child' => 0,
             'description' => '',
-            'description_id' => '',
+            'description_ind' => '',
             'code_name' => 'lapel_medium+style_lapel_notch',
             'resource_depend' => 6,
             'resources' => 'a:1:{s:4:"neck";s:48:"neck_{depend}+lapel_medium+style_lapel_notch.png";}'
@@ -102,7 +102,7 @@ class FeatureOptionSeeder extends Seeder
             'image' => 'https://www.brodewijk.com/static/media/notch_wide.323b6a18.png',
             'is_has_child' => 0,
             'description' => '',
-            'description_id' => '',
+            'description_ind' => '',
             'code_name' => 'lapel_slim+style_lapel_notch',
             'resource_depend' => 6,
             'resources' => 'a:1:{s:4:"neck";s:46:"neck_{depend}+lapel_slim+style_lapel_notch.png";}'
@@ -114,7 +114,7 @@ class FeatureOptionSeeder extends Seeder
             'image' => 'https://www.brodewijk.com/static/media/chest_pocket_welted.504a0333.png',
             'is_has_child' => 0,
             'description' => '',
-            'description_id' => '',
+            'description_ind' => '',
             'code_name' => null,
             'resource_depend' => null,
             'resources' => 'a:1:{s:6:"pocket";s:25:"breast_pocket_classic.png";}'
@@ -126,7 +126,7 @@ class FeatureOptionSeeder extends Seeder
             'image' => 'https://www.brodewijk.com/static/media/chest_pocket_round_patch.a8f98475.png',
             'is_has_child' => 0,
             'description' => '',
-            'description_id' => '',
+            'description_ind' => '',
             'code_name' => null,
             'resource_depend' => null,
             'resources' => 'a:1:{s:6:"pocket";s:25:"breast_pocket_patched.png";}'
@@ -138,7 +138,7 @@ class FeatureOptionSeeder extends Seeder
             'image' => 'https://www.brodewijk.com/static/media/chest_pocket_welted.504a0333.png',
             'is_has_child' => 0,
             'description' => '',
-            'description_id' => '',
+            'description_ind' => '',
             'code_name' => 'single_breasted+buttons_1',
             'resource_depend' => 4,
             'resources' => 'a:1:{s:4:"neck";s:43:"neck_single_breasted+buttons_1+{depend}.png";}'
@@ -150,7 +150,7 @@ class FeatureOptionSeeder extends Seeder
             'image' => 'https://www.brodewijk.com/static/media/chest_pocket_welted.504a0333.png',
             'is_has_child' => 0,
             'description' => '',
-            'description_id' => '',
+            'description_ind' => '',
             'code_name' => 'double_breasted+buttons_4',
             'resource_depend' => 4,
             'resources' => 'a:1:{s:4:"neck";s:43:"neck_double_breasted+buttons_4+{depend}.png";}'
@@ -162,7 +162,7 @@ class FeatureOptionSeeder extends Seeder
             'image' => 'https://www.brodewijk.com/static/media/chest_pocket_welted.504a0333.png',
             'is_has_child' => 0,
             'description' => '',
-            'description_id' => '',
+            'description_ind' => '',
             'code_name' => null,
             'resource_depend' => null,
             'resources' => 'a:1:{s:6:"pocket";s:36:"hip_pockets_double_welt+fit_slim.png";}'
@@ -174,7 +174,7 @@ class FeatureOptionSeeder extends Seeder
             'image' => 'https://www.brodewijk.com/static/media/chest_pocket_round_patch.a8f98475.png',
             'is_has_child' => 0,
             'description' => '',
-            'description_id' => '',
+            'description_ind' => '',
             'code_name' => null,
             'resource_depend' => null,
             'resources' => 'a:1:{s:6:"pocket";s:34:"hip_pockets_with_flap+fit_slim.png";}'
@@ -186,7 +186,7 @@ class FeatureOptionSeeder extends Seeder
             'image' => 'https://www.brodewijk.com/static/media/chest_pocket_welted.504a0333.png',
             'is_has_child' => 0,
             'description' => '',
-            'description_id' => '',
+            'description_ind' => '',
             'code_name' => null,
             'resource_depend' => null,
             'resources' => null
@@ -198,7 +198,7 @@ class FeatureOptionSeeder extends Seeder
             'image' => 'https://www.brodewijk.com/static/media/chest_pocket_round_patch.a8f98475.png',
             'is_has_child' => 0,
             'description' => '',
-            'description_id' => '',
+            'description_ind' => '',
             'code_name' => null,
             'resource_depend' => null,
             'resources' => null
@@ -210,7 +210,7 @@ class FeatureOptionSeeder extends Seeder
             'image' => 'https://www.brodewijk.com/static/media/none.862eca24.png',
             'is_has_child' => 0,
             'description' => '',
-            'description_id' => '',
+            'description_ind' => '',
             'code_name' => null,
             'resource_depend' => null,
             'resources' => null
@@ -222,7 +222,7 @@ class FeatureOptionSeeder extends Seeder
             'image' => 'https://www.brodewijk.com/static/media/pants.abf12d1b.png',
             'is_has_child' => 0,
             'description' => '',
-            'description_id' => '',
+            'description_ind' => '',
             'code_name' => null,
             'resource_depend' => null,
             'resources' => null
@@ -234,7 +234,7 @@ class FeatureOptionSeeder extends Seeder
             'image' => 'https://www.brodewijk.com/static/media/none.862eca24.png',
             'is_has_child' => 0,
             'description' => '',
-            'description_id' => '',
+            'description_ind' => '',
             'code_name' => null,
             'resource_depend' => null,
             'resources' => null
@@ -246,7 +246,7 @@ class FeatureOptionSeeder extends Seeder
             'image' => 'https://www.brodewijk.com/static/media/vest.3e8b1059.png',
             'is_has_child' => 0,
             'description' => '',
-            'description_id' => '',
+            'description_ind' => '',
             'code_name' => null,
             'resource_depend' => null,
             'resources' => null
@@ -258,7 +258,7 @@ class FeatureOptionSeeder extends Seeder
             'image' => 'https://www.brodewijk.com/static/media/none.862eca24.png',
             'is_has_child' => 0,
             'description' => '',
-            'description_id' => '',
+            'description_ind' => '',
             'code_name' => null,
             'resource_depend' => null,
             'resources' => null
@@ -270,7 +270,7 @@ class FeatureOptionSeeder extends Seeder
             'image' => 'https://www.brodewijk.com/static/media/shirt.259f50e2.png',
             'is_has_child' => 0,
             'description' => '',
-            'description_id' => '',
+            'description_ind' => '',
             'code_name' => null,
             'resource_depend' => null,
             'resources' => null
@@ -282,7 +282,7 @@ class FeatureOptionSeeder extends Seeder
             'image' => 'https://www.brodewijk.com/static/media/none.862eca24.png',
             'is_has_child' => 0,
             'description' => '',
-            'description_id' => '',
+            'description_ind' => '',
             'code_name' => null,
             'resource_depend' => null,
             'resources' => null
@@ -294,7 +294,7 @@ class FeatureOptionSeeder extends Seeder
             'image' => 'https://www.brodewijk.com/static/media/bowtie.4e29894b.png',
             'is_has_child' => 0,
             'description' => '',
-            'description_id' => '',
+            'description_ind' => '',
             'code_name' => null,
             'resource_depend' => null,
             'resources' => null
@@ -306,7 +306,7 @@ class FeatureOptionSeeder extends Seeder
             'image' => '',
             'is_has_child' => 0,
             'description' => '',
-            'description_id' => '',
+            'description_ind' => '',
             'code_name' => null,
             'resource_depend' => null,
             'resources' => null
@@ -318,7 +318,7 @@ class FeatureOptionSeeder extends Seeder
             'image' => '',
             'is_has_child' => 0,
             'description' => '',
-            'description_id' => '',
+            'description_ind' => '',
             'code_name' => null,
             'resource_depend' => null,
             'resources' => null

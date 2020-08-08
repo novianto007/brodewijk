@@ -22,6 +22,7 @@ class Fabric extends BaseResource
             'brand' => $this->brand,
             'grade' => $this->grade,
             'description' => $this->description,
+            'description_ind' => $this->description_ind,
             'colors' => FabricColor::collection($this->fabricColors)->addExtraField($this->extraField),
         ];
     }

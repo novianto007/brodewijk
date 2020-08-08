@@ -17,8 +17,8 @@ class FabricType extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'base_price' => $this->base_price,
-            'extra_price' => $this->extra_price,
+            'base_price' => $this->base_price + $this->base_price_margin,
+            'extra_price' => $this->extra_price + $this->extra_price_margin,
         ];
     }
 }

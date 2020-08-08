@@ -21,6 +21,7 @@ class FeatureOption extends BaseResource
             'image' => $this->image,
             'is_has_child' => $this->is_has_child,
             'description' => $this->description,
+            'description_ind' => $this->description_ind,
             'resources' => $this->getResource(),
             'code_name' => $this->code_name,
             'resource_depend' => $this->resource_depend,

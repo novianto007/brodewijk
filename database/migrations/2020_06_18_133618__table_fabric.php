@@ -20,7 +20,7 @@ class TableFabric extends Migration
             $table->string("brand", 100);
             $table->string("grade", 100);
             $table->text("description");
-            $table->text("description_id");
+            $table->text("description_ind");
             $table->timestamps();
         });
     }

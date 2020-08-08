@@ -17,6 +17,7 @@ class ProductFeature extends BaseResource
         return [
             'id' => $this->feature->id,
             'name' => $this->feature->name,
+            'name_ind' => $this->feature->name_ind,
             'type' => $this->feature->type,
             'description' => $this->feature->description,
             'options' => FeatureOption::collection($this->feature->featureOptions)->addExtraField($this),

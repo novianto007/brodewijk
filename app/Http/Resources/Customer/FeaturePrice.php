@@ -16,7 +16,7 @@ class FeaturePrice extends JsonResource
     {
         return [
             'fabric_id' =>$this->fabric_type_id, 
-            'price' => $this->price
+            'price' => $this->price + $this->price_margin
         ];
     }
 }

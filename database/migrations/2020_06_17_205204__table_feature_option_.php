@@ -21,7 +21,7 @@ class TableFeatureOption extends Migration
             $table->string("image", 200)->nullable();
             $table->boolean("is_has_child");
             $table->text("description");
-            $table->text("description_id");
+            $table->text("description_ind");
             $table->bigInteger("resource_depend")->nullable();
             $table->text("resources")->nullable();
             $table->timestamps();

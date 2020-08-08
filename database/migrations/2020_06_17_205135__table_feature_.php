@@ -17,7 +17,7 @@ class TableFeature extends Migration
             $table->id();
             $table->bigInteger("category_id");
             $table->string("name", 100);
-            $table->string("name_id", 100);
+            $table->string("name_ind", 100);
             $table->string("type", 20);
             $table->text("description");
             $table->timestamps();

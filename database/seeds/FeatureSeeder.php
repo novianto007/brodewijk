@@ -16,7 +16,7 @@ class FeatureSeeder extends Seeder
             'category_id' => 1,
             'type' => 'option',
             'name' => 'Lining',
-            'name_id' => 'Lining',
+            'name_ind' => 'Lining',
             'description' => ''
         ]);
 
@@ -24,7 +24,7 @@ class FeatureSeeder extends Seeder
             'category_id' => 1,
             'type' => 'option',
             'name' => 'Canvas Type',
-            'name_id' => 'Canvas Type',
+            'name_ind' => 'Canvas Type',
             'description' => ''
         ]);
 
@@ -32,7 +32,7 @@ class FeatureSeeder extends Seeder
             'category_id' => 1,
             'type' => 'option',
             'name' => 'Shoulder Type',
-            'name_id' => 'Shoulder Type',
+            'name_ind' => 'Shoulder Type',
             'description' => ''
         ]);
 
@@ -40,7 +40,7 @@ class FeatureSeeder extends Seeder
             'category_id' => 1,
             'type' => 'option',
             'name' => 'Lapels',
-            'name_id' => 'Lapels',
+            'name_ind' => 'Lapels',
             'description' => ''
         ]);
 
@@ -48,7 +48,7 @@ class FeatureSeeder extends Seeder
             'category_id' => 1,
             'type' => 'option',
             'name' => 'Chest Pocket',
-            'name_id' => 'Chest Pocket',
+            'name_ind' => 'Chest Pocket',
             'description' => ''
         ]);
 
@@ -56,7 +56,7 @@ class FeatureSeeder extends Seeder
             'category_id' => 1,
             'type' => 'option',
             'name' => 'Buttons',
-            'name_id' => 'Buttons',
+            'name_ind' => 'Buttons',
             'description' => ''
         ]);
 
@@ -64,7 +64,7 @@ class FeatureSeeder extends Seeder
             'category_id' => 1,
             'type' => 'option',
             'name' => 'Pockets',
-            'name_id' => 'Pockets',
+            'name_ind' => 'Pockets',
             'description' => ''
         ]);
 
@@ -72,7 +72,7 @@ class FeatureSeeder extends Seeder
             'category_id' => 1,
             'type' => 'option',
             'name' => 'Vents',
-            'name_id' => 'Vents',
+            'name_ind' => 'Vents',
             'description' => ''
         ]);
 
@@ -80,7 +80,7 @@ class FeatureSeeder extends Seeder
             'category_id' => 1,
             'type' => 'option',
             'name' => 'Pants',
-            'name_id' => 'Pants',
+            'name_ind' => 'Pants',
             'description' => ''
         ]);
 
@@ -88,7 +88,7 @@ class FeatureSeeder extends Seeder
             'category_id' => 1,
             'type' => 'option',
             'name' => 'Vest',
-            'name_id' => 'Vest',
+            'name_ind' => 'Vest',
             'description' => ''
         ]);
 
@@ -96,7 +96,7 @@ class FeatureSeeder extends Seeder
             'category_id' => 1,
             'type' => 'option',
             'name' => 'Shirt',
-            'name_id' => 'Shirt',
+            'name_ind' => 'Shirt',
             'description' => ''
         ]);
 
@@ -104,7 +104,7 @@ class FeatureSeeder extends Seeder
             'category_id' => 1,
             'type' => 'option',
             'name' => 'Tie',
-            'name_id' => 'Tie',
+            'name_ind' => 'Tie',
             'description' => ''
         ]);
 
@@ -112,7 +112,7 @@ class FeatureSeeder extends Seeder
             'category_id' => 1,
             'type' => 'value',
             'name' => 'Monogram',
-            'name_id' => 'Monogram',
+            'name_ind' => 'Monogram',
             'description' => ''
         ]);
     }
