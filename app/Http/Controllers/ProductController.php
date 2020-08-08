@@ -30,7 +30,7 @@ class ProductController extends Controller
                 "product" => new ProductResource($product),
                 "fabrics" => FabricResource::collection($fabric)->addExtraField($product)
             ];
-            Cache::put($cacheKey, $data, 1);
+            Cache::put($cacheKey, $data, env("CACHE_DURATION"));
         }
         return $this->response(false, 'success', $data);
     }
@@ -50,7 +50,7 @@ class ProductController extends Controller
                 "product" => new ProductResource($product),
                 "features" => ProductFeatureResource::collection($product->productFeatures)
             ];
-            Cache::put($cacheKey, $data, 1);
+            Cache::put($cacheKey, $data, env("CACHE_DURATION"));
         }
         return $this->response(false, 'success', $data);
     }
