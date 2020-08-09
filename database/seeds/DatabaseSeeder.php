@@ -37,5 +37,7 @@ class DatabaseSeeder extends Seeder
         $this->call('DistrictSeeder');
         $this->call('CountrySeeder');
         $this->call('AddressSeeder');
+        $this->call('PromoSeeder');
+        $this->call('PromoRuleSeeder');
     }
 }
