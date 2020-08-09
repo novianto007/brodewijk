@@ -17,7 +17,7 @@ class CreateCartsTable extends Migration
             $table->id();
             $table->bigInteger('customer_id');
             $table->double('total_price');
-            $table->string('order_product_id', 150);
+            $table->string('order_product_ids', 150);
             $table->timestamps();
         });
     }

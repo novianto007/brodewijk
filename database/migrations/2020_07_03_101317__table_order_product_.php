@@ -15,7 +15,6 @@ class TableOrderProduct extends Migration
     {
         Schema::create('order_products', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('order_id');
             $table->bigInteger('product_id');
             $table->string('image')->nullable();
             $table->text('description');

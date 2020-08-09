@@ -22,9 +22,9 @@ $router->group(['prefix' => 'customer/api'], function () use ($router) {
     $router->get("/fabric/{categorySlug}[/{productSlug}]", "ProductController@getFabrics");
     $router->get("/feature/{categorySlug}[/{productSlug}]", "ProductController@getFeatures");
     $router->get("/measurement", "MeasurementController@getAll");
-    $router->post("/add-to-cart", "OrderController@addToCart");
-    $router->post("/add-measurement/{id}", "OrderController@addMeasurement");
-    $router->get("/get-cart", "OrderController@getCart");
+    $router->post("/add-to-cart", "CartController@addToCart");
+    $router->post("/add-measurement/{id}", "CartController@addMeasurement");
+    $router->get("/get-cart", "CartController@getCart");
     $router->get("/provinces", "AddressController@getProvinces");
     $router->get("/cities/{provinceId}", "AddressController@getCities");
     $router->get("/districts/{cityId}", "AddressController@getDistricts");

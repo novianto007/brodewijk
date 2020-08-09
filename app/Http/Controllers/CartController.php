@@ -6,8 +6,8 @@ use App\Models\ClothMeasurement;
 use App\Models\Fabric;
 use App\Models\FeatureOptionChild;
 use App\Models\FeaturePrice;
-use App\Http\Resources\Customer\Cart;
-use App\Models\Order;
+use App\Http\Resources\Customer\Cart as CartResource;
+use App\Models\Cart;
 use App\Models\OrderMeasurement;
 use App\Models\OrderProduct;
 use App\Models\PantsMeasurement;
@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
-class OrderController extends Controller
+class CartController extends Controller
 {
     public function __construct()
     {
@@ -32,18 +32,18 @@ class OrderController extends Controller
         $productInput['product_price'] = $productInput['fabric_price'] + $featuresInput['totalPrice'];
         $productInput['description'] = $featuresInput['description'];
 
-        $order = Order::saveCart($productInput, $featuresInput['features'], Auth::user()->id);
+        $cart = Cart::saveCart($productInput, $featuresInput['features'], Auth::user()->id);
 
-        return $this->response(false, "success", $order);
+        return $this->response(false, "success", $cart);
     }
 
     public function getCart()
     {
-        $order = Order::getCartData(Auth::user()->id);
-        if ($order == null) {
-            return $this->response(false, "cart is empty", null);
+        $cart = Cart::getCartData(Auth::user()->id);
+        if ($cart == null) {
+            return $this->response(false, "cart is empty", []);
         }
-        return $this->response(false, "success", new Cart($order));
+        return $this->response(false, "success", new CartResource($cart));
     }
 
     public function addMeasurement(Request $request, $id)

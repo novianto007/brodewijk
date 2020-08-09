@@ -16,7 +16,7 @@ class Cart extends JsonResource
     {
         return [
             'total_price' => $this->total_price,
-            'items' => CartItem::collection($this->orderProducts)
+            'items' => CartItem::collection($this->orderProducts())
         ];
     }
 }
