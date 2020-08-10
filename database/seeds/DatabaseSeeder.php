@@ -39,5 +39,6 @@ class DatabaseSeeder extends Seeder
         $this->call('AddressSeeder');
         $this->call('PromoSeeder');
         $this->call('PromoRuleSeeder');
+        $this->call('UserSeeder');
     }
 }

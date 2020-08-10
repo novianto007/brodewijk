@@ -32,6 +32,10 @@ $router->group(['prefix' => 'customer/api'], function () use ($router) {
     $router->get("/address", "AddressController@getAll");
 });
 
+$router->group(['prefix' => 'admin/api'], function () use ($router) {
+    $router->post("/login", "Admin\AuthController@login");
+});
+
 $router->post("/upload/{id}", "FabricColorController@upload");
 $router->post("/fabric-type", "FabricTypeController@store");
 $router->post("/fabric", "FabricController@store");
