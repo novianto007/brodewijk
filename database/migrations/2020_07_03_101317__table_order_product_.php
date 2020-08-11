@@ -21,6 +21,7 @@ class TableOrderProduct extends Migration
             $table->double('product_price');
             $table->double('extra_price')->default(0);
             $table->boolean('is_customized');
+            $table->bigInteger('fabric_id');
             $table->bigInteger('fabric_color_id');
             $table->double('fabric_price');
             $table->text('note');

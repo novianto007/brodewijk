@@ -17,7 +17,7 @@ class CreatePromosTable extends Migration
             $table->id();
             $table->string('name', 100);
             $table->text('description');
-            $table->string('code', 100);
+            $table->string('code', 100)->unique();
             $table->string('type', 100);
             $table->double('amount');
             $table->boolean('is_active');

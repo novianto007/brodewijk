@@ -17,6 +17,7 @@ class OrderProductSeeder extends Seeder
             'product_price' => 2110000,
             'description' => '',
             'is_customized' => false,
+            'fabric_id' => 1,
             'fabric_color_id' => 1,
             'fabric_price' => 2110000,
             'note' => '',

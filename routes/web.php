@@ -30,6 +30,7 @@ $router->group(['prefix' => 'customer/api'], function () use ($router) {
     $router->get("/districts/{cityId}", "AddressController@getDistricts");
     $router->post("/address", "AddressController@store");
     $router->get("/address", "AddressController@getAll");
+    $router->get("/promo/verify-code/{promoCode}", "PromoController@verifyCode");
 });
 
 $router->group(['prefix' => 'admin/api'], function () use ($router) {

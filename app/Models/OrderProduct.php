@@ -13,7 +13,7 @@ class OrderProduct extends Model
      * @var array
      */
     protected $fillable = [
-        'order_id', 'product_id', 'product_price', 'extra_price', 'is_customized', 'fabric_color_id', 'fabric_price', 'note', 'description', 'image'
+        'order_id', 'product_id', 'product_price', 'extra_price', 'is_customized', 'fabric_id', 'fabric_color_id', 'fabric_price', 'note', 'description', 'image'
     ];
 
     /**
@@ -23,9 +23,10 @@ class OrderProduct extends Model
      */
     protected $hidden = [];
 
-    public function updateExtraPrice($extraPrice){
+    public function updateExtraPrice($extraPrice)
+    {
         if ($extraPrice > 0) {
-            if($this->extra_price > 0){
+            if ($this->extra_price > 0) {
                 $extraPrice -= $this->extra_price;
             }
             $this->product_price += $extraPrice;
@@ -33,7 +34,7 @@ class OrderProduct extends Model
             $order = $this->order;
             $order->total_price += $extraPrice;
             $order->save();
-        }elseif($this->extra_price > 0){
+        } elseif ($this->extra_price > 0) {
             $this->product_price -= $this->extra_price;
             $order = $this->order;
             $order->total_price -= $this->extra_price;

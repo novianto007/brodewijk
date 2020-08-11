@@ -31,6 +31,7 @@ class CartController extends Controller
         $productInput['fabric_price'] = $fabric->fabricType->base_price;
         $productInput['product_price'] = $productInput['fabric_price'] + $featuresInput['totalPrice'];
         $productInput['description'] = $featuresInput['description'];
+        $productInput['fabric_id'] = $fabric->id;
 
         $cart = Cart::saveCart($productInput, $featuresInput['features'], Auth::user()->id);
 
@@ -70,9 +71,9 @@ class CartController extends Controller
             }
         }
         $orderMeasurement = OrderMeasurement::findByOrderProductId($id);
-        if($orderMeasurement){
+        if ($orderMeasurement) {
             $orderMeasurement->updateCart($measurement, $cloth, $pants, $extraPrice);
-        }else{
+        } else {
             $orderMeasurement = OrderMeasurement::saveCart($measurement, $cloth, $pants, $extraPrice);
         }
         return $this->response(false, "success", $orderMeasurement);

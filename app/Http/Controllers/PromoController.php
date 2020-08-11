@@ -1,0 +1,45 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Cart;
+use App\Models\Promo;
+use Illuminate\Support\Facades\Auth;
+
+class PromoController extends Controller
+{
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Get the authenticated User.
+     *
+     * @return Response
+     */
+    public function verifyCode($promoCode)
+    {
+        $promo = Promo::where(['code' => $promoCode, 'is_active' => Promo::$ACTIVE])->first();
+        if (!$promo) {
+            return $this->response(true, 'invalid promo code', null, 400);
+        }
+
+        $cart = Cart::getCartData(Auth::user()->id);
+        if ($cart === null) {
+            return $this->response(true, 'You do not have cart', null, 404);
+        }
+
+        if ($promo->promoRules->isNotEmpty()) {
+            if (!$promo->validatePromoRules($cart)) {
+                return $this->response(true, 'can not use promo code', null, 400);
+            }
+        }
+
+        $discount = $promo->getDiscountPrice($cart->total_price);
+        return $this->response(false, "Promo code is verified", [
+            'discount_price' => $discount,
+            'final_price' => $cart->total_price - $discount
+        ]);
+    }
+}
