@@ -28,10 +28,6 @@ class DatabaseSeeder extends Seeder
         $this->call('ClothMeasurementSeeder');
         $this->call('PantsMeasurementSeeder');
         $this->call('SizePreferenceSeeder');
-        $this->call('OrderSeeder');
-        $this->call('OrderFeatureSeeder');
-        $this->call('OrderMeasurementSeeder');
-        $this->call('OrderProductSeeder');
         $this->call('ProvinceSeeder');
         $this->call('CitySeeder');
         $this->call('DistrictSeeder');

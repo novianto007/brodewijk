@@ -27,6 +27,11 @@ class Promo extends Model
      */
     protected $hidden = [];
 
+    public static function getByCode($promoCode)
+    {
+        return Promo::where(['code' => $promoCode, 'is_active' => self::$ACTIVE])->first();
+    }
+
     public function getDiscountPrice($totalPrice)
     {
         if ($this->type === self::$TYPE_CUTOFF) {

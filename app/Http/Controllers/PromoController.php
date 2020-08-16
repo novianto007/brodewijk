@@ -20,8 +20,7 @@ class PromoController extends Controller
      */
     public function verifyCode($promoCode)
     {
-        $promo = Promo::where(['code' => $promoCode, 'is_active' => Promo::$ACTIVE])->first();
-        if (!$promo) {
+        if (!$promo = Promo::getByCode($promoCode)) {
             return $this->response(true, 'invalid promo code', null, 400);
         }
 

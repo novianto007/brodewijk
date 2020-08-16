@@ -39,4 +39,16 @@ class Address extends Model
     {
         return $this->belongsTo(District::class);
     }
+
+    public function toAddressString()
+    {
+        return sprintf(
+            '%s\n, %s, $s, %s\n, IDN, %d',
+            $this->address,
+            $this->district->name,
+            $this->city->name,
+            $this->province_name,
+            $this->postcode
+        );
+    }
 }

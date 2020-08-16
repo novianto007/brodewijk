@@ -16,7 +16,16 @@ class TableOrder extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('customer_id');
+            $table->string("email", 80);
+            $table->string("full_name", 100);
+            $table->string("phone_number", 15);
             $table->double('total_price');
+            $table->timestamp('deadline')->nullable();
+            $table->string('promo_code', 100)->nullable();
+            $table->double('discount_price')->default(0);
+            $table->string('order_product_ids', 150);
+            $table->text('shipment_address');
+            $table->text('shipment_note');
             $table->integer('status')->default(0);
             $table->timestamps();
         });

@@ -23,6 +23,7 @@ class CreateAddressesTable extends Migration
             $table->bigInteger('district_id');
             $table->integer('postcode', false, true);
             $table->string('note')->default('');
+            $table->bigInteger('country_id')->default(1);
             $table->timestamps();
         });
     }
