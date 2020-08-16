@@ -43,7 +43,7 @@ class Address extends Model
     public function toAddressString()
     {
         return sprintf(
-            '%s\n, %s, $s, %s\n, IDN, %d',
+            '%s\n, %s, %s, %s\n, IDN, %d',
             $this->address,
             $this->district->name,
             $this->city->name,
