@@ -24,8 +24,7 @@ class PromoController extends Controller
             return $this->response(true, 'invalid promo code', null, 400);
         }
 
-        $cart = Cart::getCartData(Auth::user()->id);
-        if ($cart === null) {
+        if (!$cart = Cart::where('customer_id', Auth::user()->id)->first()) {
             return $this->response(true, 'You do not have cart', null, 404);
         }
 

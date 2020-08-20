@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Libraries\Midtrans;
 use App\Models\Address;
 use App\Models\Cart;
 use App\Models\Order;
@@ -26,30 +27,35 @@ class OrderController extends Controller
     {
         $order = $this->validateOrder($request);
         $address = $this->validateShipementAddress($request);
-        $cart = Cart::getCartData(Auth::user()->id);
+        if (!$cart = Cart::where('customer_id', Auth::user()->id)->first()) {
+            return $this->response(true, 'cart is empty', null, 422);
+        }
         $order->customer_id = Auth::user()->id;
         $order->total_price = $cart->total_price;
         $order->order_product_ids = $cart->order_product_ids;
         if ($promoCode = $request->promo_code) {
             if (!$promo = Promo::getByCode($promoCode)) {
-                return $this->response(true, 'invalid promo code', null, 400);
+                return $this->response(true, 'invalid promo code', null, 422);
             }
 
             if ($promo->promoRules->isNotEmpty()) {
                 if (!$promo->validatePromoRules($cart)) {
-                    return $this->response(true, 'can not use promo code', null, 400);
+                    return $this->response(true, 'can not use promo code', null, 422);
                 }
             }
             $order->discount_price = $promo->getDiscountPrice($cart->total_price);
         }
         $order->shipment_address = $address->toAddressString();
         $order->shipment_note = $address->note;
-        $order = DB::transaction(function () use ($order, $cart) {
+        $result = DB::transaction(function () use ($order, $cart) {
             $order->save();
             $cart->delete();
-            return $order;
+            return [
+                "order_data" => $order,
+                "payment_data" => (new Midtrans())->getToken($order)
+            ];
         });
-        return $this->response(false, 'order successfully created', $order);
+        return $this->response(false, 'order successfully created', $result);
     }
 
     private function validateOrder(Request $request)

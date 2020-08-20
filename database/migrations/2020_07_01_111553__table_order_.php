@@ -26,6 +26,7 @@ class TableOrder extends Migration
             $table->string('order_product_ids', 150);
             $table->text('shipment_address');
             $table->text('shipment_note');
+            $table->string('snap_token')->nullable;
             $table->integer('status')->default(0);
             $table->timestamps();
         });

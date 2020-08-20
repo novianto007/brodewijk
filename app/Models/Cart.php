@@ -25,6 +25,10 @@ class Cart extends Model
      */
     protected $hidden = [];
 
+    protected $attributes = [
+        'order_product_ids' => ''
+    ];
+
     protected static function booted()
     {
         static::retrieved(function ($model) {
@@ -35,7 +39,9 @@ class Cart extends Model
         });
 
         static::creating(function ($model) {
-            $model->order_product_ids = serialize($model->productIds);
+            if (sizeof($model->productIds) > 0) {
+                $model->order_product_ids = serialize($model->productIds);
+            }
             return true;
         });
 
@@ -50,19 +56,19 @@ class Cart extends Model
         return OrderProduct::whereIn('id', $this->productIds)->get();
     }
 
-    public static function getCartData($customerId)
+    public static function getOrCreate($customerId)
     {
-        $order = self::where('customer_id', $customerId)->first();
-        if (!$order) {
-            $order = self::create(['customer_id' => $customerId, 'total_price' => 0]);
+        $cart = self::where('customer_id', $customerId)->first();
+        if (!$cart) {
+            $cart = self::create(['customer_id' => $customerId, 'total_price' => 0]);
         }
-        return $order;
+        return $cart;
     }
 
     public static function saveCart($product, $features, $customerId)
     {
         return DB::transaction(function () use ($product, $features, $customerId) {
-            $cart = self::getCartData($customerId);
+            $cart = self::getOrCreate($customerId);
             $orderProduct = OrderProduct::create($product);
             $orderProduct->orderFeatures()->createMany($features);
             array_push($cart->productIds, $orderProduct->id);
