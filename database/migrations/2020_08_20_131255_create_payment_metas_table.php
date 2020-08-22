@@ -15,7 +15,7 @@ class CreatePaymentMetasTable extends Migration
     {
         Schema::create('payment_metas', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('payment_id');
+            $table->bigInteger('order_payment_id');
             $table->string('meta_key');
             $table->string('meta_value');
             $table->timestamps();

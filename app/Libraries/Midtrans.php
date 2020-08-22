@@ -2,6 +2,9 @@
 
 namespace App\Libraries;
 
+use Exception;
+use Midtrans\ApiRequestor;
+
 class Midtrans
 {
     public function __construct()
@@ -31,5 +34,21 @@ class Midtrans
         ];
 
         return \Midtrans\Snap::createTransaction($params);
+    }
+
+    public function getPaymentInfo($id)
+    {
+        $resp = ApiRequestor::remoteCall("https://api.sandbox.midtrans.com/v2/$id/status", \Midtrans\Config::$serverKey, null, false);
+        if (!$this->validateSignatureKey($resp)) {
+            throw new Exception('invalid signature');
+        }
+        return $resp;
+    }
+
+    private function validateSignatureKey($data)
+    {
+        $key = $data['order_id'] . $data['status_code'] . $data['gross_amount'] . \Midtrans\Config::$serverKey;
+        $signature = hash('sha512', $key, false);
+        return $signature == $data['signature_key'];
     }
 }

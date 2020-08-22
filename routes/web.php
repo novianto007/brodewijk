@@ -11,7 +11,7 @@
 |
 */
 
-$router->get('/ping', function (){ 
+$router->get('/ping', function () {
     return 'pong';
 });
 
@@ -33,6 +33,8 @@ $router->group(['prefix' => 'customer/api'], function () use ($router) {
     $router->get("/promo/verify-code/{promoCode}", "PromoController@verifyCode");
     $router->post("/placeorder", "OrderController@placeOrder");
 });
+
+$router->get("/payment/finish", "PaymentController@finish");
 
 $router->group(['prefix' => 'admin/api'], function () use ($router) {
     $router->post("/login", "Admin\AuthController@login");

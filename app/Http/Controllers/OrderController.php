@@ -52,7 +52,7 @@ class OrderController extends Controller
             $cart->delete();
             return [
                 "order_data" => $order,
-                "payment_data" => (new Midtrans())->getToken($order)
+                "payment_data" => app(Midtrans::class)->getToken($order)
             ];
         });
         return $this->response(false, 'order successfully created', $result);
