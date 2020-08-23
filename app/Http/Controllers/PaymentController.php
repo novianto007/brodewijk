@@ -25,6 +25,9 @@ class PaymentController extends Controller
     public function notification(Request $request)
     {
         $data = $request->all();
+        if(!app(Midtrans::class)->verifySignatureKey($data)){
+            return $this->response(true, 'error', null, 422);    
+        }
         $orderPayment = OrderPayment::where('order_id', $data['order_id'])->first();
         if ($orderPayment) {
             $orderPayment->updatePaymentInfo($data);
