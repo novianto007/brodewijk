@@ -16,13 +16,12 @@ class PantsMeasurement extends BaseResource
     {
         return [
             'id' => $this->id,
-            'pants_length' => $this->pants_length,
-            'trouser_waist' => $this->trouser_waist,
+            'waist' => $this->waist,
+            'seat' => $this->seat,
             'crotch' => $this->crotch,
             'thigh' => $this->thigh,
             'knee' => $this->knee,
-            'ankle' => $this->ankle,
-            'pants_hips' => $this->pants_hips
+            'leg_length' => $this->leg_length
         ];
     }
 }

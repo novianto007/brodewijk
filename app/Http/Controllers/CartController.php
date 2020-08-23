@@ -59,14 +59,14 @@ class CartController extends Controller
         $extraPrice = 0;
         if (in_array($orderProduct->product->category->type, ['suit', 'cloth'])) {
             $cloth = $this->validateCloth($request, $measurement);
-            if (ClothMeasurement::isExtraSize($cloth['shoulder_width'])) {
+            if (ClothMeasurement::isExtraSize($cloth['shoulder'])) {
                 $extraPrice += $fabric->fabricType->extra_price;
             }
         }
 
         if (in_array($orderProduct->product->category->type, ['suit', 'pants'])) {
             $pants = $this->validatePants($request, $measurement);
-            if (PantsMeasurement::isExtraSize($pants['trouser_waist'])) {
+            if (PantsMeasurement::isExtraSize($pants['waist'])) {
                 $extraPrice += $fabric->fabricType->extra_price;
             }
         }
@@ -87,8 +87,7 @@ class CartController extends Controller
             'product_id' => 'required|integer|exists:products,id',
             'is_customized' => 'required|boolean',
             'note' => 'string',
-            'features' => 'required|array',
-            'measurement' => 'required|array',
+            'features' => 'required|array'
         ]);
         return $input;
     }
@@ -111,13 +110,12 @@ class CartController extends Controller
     {
         $pants = $measurement['pants'];
         $this->customValidate($request, compact('pants'), [
-            'pants.trouser_waist' => 'required|integer',
+            'pants.waist' => 'required|integer',
+            'pants.seat' => 'required|integer',
             'pants.crotch' => 'required|integer',
             'pants.thigh' => 'required|integer',
             'pants.knee' => 'required|integer',
-            'pants.ankle' => 'required|integer',
-            'pants.pants_length' => 'required|integer',
-            'pants.pants_hips' => 'required|integer',
+            'pants.leg_length' => 'required|integer',
         ]);
         return $pants;
     }
@@ -126,17 +124,15 @@ class CartController extends Controller
     {
         $cloth = $measurement['cloth'];
         $this->customValidate($request, compact('cloth'), [
-            'cloth.front_length' => 'required|numeric',
-            'cloth.shoulder_width' => 'required|numeric',
-            'cloth.sleeve_length' => 'required|numeric',
+            'cloth.neck' => 'required|numeric',
+            'cloth.shoulder' => 'required|numeric',
+            'cloth.bicep' => 'required|numeric',
             'cloth.chest' => 'required|numeric',
             'cloth.waist' => 'required|numeric',
-            'cloth.hips' => 'required|numeric',
-            'cloth.armpits' => 'required|numeric',
-            'cloth.biceps' => 'required|numeric',
+            'cloth.arm_length' => 'required|numeric',
+            'cloth.torso_length' => 'required|numeric',
+            'cloth.stomach' => 'required|numeric',
             'cloth.wrist' => 'required|numeric',
-            'cloth.front_chest' => 'required|numeric',
-            'cloth.back_chest' => 'required|numeric',
         ]);
         return $cloth;
     }

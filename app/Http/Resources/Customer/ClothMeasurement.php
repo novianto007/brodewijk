@@ -16,17 +16,15 @@ class ClothMeasurement extends BaseResource
     {
         return [
             'id' => $this->id,
-            'front_length' => $this->front_length,
-            'shoulder_width' => $this->shoulder_width,
-            'sleeve_length' => $this->sleeve_length,
+            'neck' => $this->neck,
+            'shoulder' => $this->shoulder,
+            'bicep' => $this->bicep,
             'chest' => $this->chest,
             'waist' => $this->waist,
-            'hips' => $this->hips,
-            'armpits' => $this->armpits,
-            'biceps' => $this->biceps,
-            'wrist' => $this->wrist,
-            'front_chest' => $this->front_chest,
-            'back_chest' => $this->back_chest
+            'arm_length' => $this->arm_length,
+            'torso_length' => $this->torso_length,
+            'stomach' => $this->stomach,
+            'wrist' => $this->wrist
         ];
     }
 }

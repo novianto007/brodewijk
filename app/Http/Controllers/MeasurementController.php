@@ -9,6 +9,11 @@ use App\Http\Resources\Customer\SizePreference as SizePreferenceResource;
 
 class MeasurementController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Get the measurement.
      *

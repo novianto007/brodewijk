@@ -15,17 +15,15 @@ class TableClothMeasurement extends Migration
     {
         Schema::create('cloth_measurements', function (Blueprint $table) {
             $table->id();
-            $table->double('front_length');
-            $table->double('shoulder_width');
-            $table->double('sleeve_length');
-            $table->double('chest');
-            $table->double('waist');
-            $table->double('hips');
-            $table->double('armpits');
-            $table->double('biceps');
+            $table->double('neck');
+            $table->double('shoulder');
+            $table->double('bicep');
+            $table->double('arm_length');
             $table->double('wrist');
-            $table->double('front_chest');
-            $table->double('back_chest');
+            $table->double('torso_length');
+            $table->double('chest');
+            $table->double('stomach');
+            $table->double('waist');
             $table->timestamps();
         });
     }

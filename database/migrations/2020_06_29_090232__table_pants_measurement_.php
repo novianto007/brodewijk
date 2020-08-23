@@ -15,13 +15,12 @@ class TablePantsMeasurement extends Migration
     {
         Schema::create('pants_measurements', function (Blueprint $table) {
             $table->id();
-            $table->double('pants_length');
-            $table->double('trouser_waist');
+            $table->double('waist');
+            $table->double('seat');
+            $table->double('leg_length');
             $table->double('crotch');
             $table->double('thigh');
             $table->double('knee');
-            $table->double('ankle');
-            $table->double('pants_hips');
             $table->timestamps();
         });
     }

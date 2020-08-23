@@ -13,87 +13,75 @@ class ClothMeasurementSeeder extends Seeder
     public function run()
     {
         DB::table('cloth_measurements')->insert([
-            'front_length' => 1,
-            'shoulder_width' => 2,
-            'sleeve_length' => 3,
+            'neck' => 1,
+            'shoulder' => 2,
+            'bicep' => 3,
             'chest' => 4,
             'waist' => 5,
-            'hips' => 6,
-            'armpits' => 7,
-            'biceps' => 8,
-            'wrist' => 9,
-            'front_chest' => 10,
-            'back_chest' => 11,
+            'arm_length' => 6,
+            'torso_length' => 7,
+            'stomach' => 8,
+            'wrist' => 9
         ]);
 
         DB::table('cloth_measurements')->insert([
-            'front_length' => 2,
-            'shoulder_width' => 2,
-            'sleeve_length' => 3,
+            'neck' => 2,
+            'shoulder' => 2,
+            'bicep' => 3,
             'chest' => 4,
             'waist' => 5,
-            'hips' => 6,
-            'armpits' => 7,
-            'biceps' => 8,
-            'wrist' => 9,
-            'front_chest' => 10,
-            'back_chest' => 11,
+            'arm_length' => 6,
+            'torso_length' => 7,
+            'stomach' => 8,
+            'wrist' => 9
         ]);
 
         DB::table('cloth_measurements')->insert([
-            'front_length' => 3,
-            'shoulder_width' => 2,
-            'sleeve_length' => 3,
+            'neck' => 3,
+            'shoulder' => 2,
+            'bicep' => 3,
             'chest' => 4,
             'waist' => 5,
-            'hips' => 6,
-            'armpits' => 7,
-            'biceps' => 8,
-            'wrist' => 9,
-            'front_chest' => 10,
-            'back_chest' => 11,
+            'arm_length' => 6,
+            'torso_length' => 7,
+            'stomach' => 8,
+            'wrist' => 9
         ]);
 
         DB::table('cloth_measurements')->insert([
-            'front_length' => 4,
-            'shoulder_width' => 2,
-            'sleeve_length' => 3,
+            'neck' => 4,
+            'shoulder' => 2,
+            'bicep' => 3,
             'chest' => 4,
             'waist' => 5,
-            'hips' => 6,
-            'armpits' => 7,
-            'biceps' => 8,
-            'wrist' => 9,
-            'front_chest' => 10,
-            'back_chest' => 11,
+            'arm_length' => 6,
+            'torso_length' => 7,
+            'stomach' => 8,
+            'wrist' => 9
         ]);
 
         DB::table('cloth_measurements')->insert([
-            'front_length' => 5,
-            'shoulder_width' => 2,
-            'sleeve_length' => 3,
+            'neck' => 5,
+            'shoulder' => 2,
+            'bicep' => 3,
             'chest' => 4,
             'waist' => 5,
-            'hips' => 6,
-            'armpits' => 7,
-            'biceps' => 8,
-            'wrist' => 9,
-            'front_chest' => 10,
-            'back_chest' => 11,
+            'arm_length' => 6,
+            'torso_length' => 7,
+            'stomach' => 8,
+            'wrist' => 9
         ]);
 
         DB::table('cloth_measurements')->insert([
-            'front_length' => 6,
-            'shoulder_width' => 2,
-            'sleeve_length' => 3,
+            'neck' => 6,
+            'shoulder' => 2,
+            'bicep' => 3,
             'chest' => 4,
             'waist' => 5,
-            'hips' => 6,
-            'armpits' => 7,
-            'biceps' => 8,
-            'wrist' => 9,
-            'front_chest' => 10,
-            'back_chest' => 11,
+            'arm_length' => 6,
+            'torso_length' => 7,
+            'stomach' => 8,
+            'wrist' => 9
         ]);
     }
 }
