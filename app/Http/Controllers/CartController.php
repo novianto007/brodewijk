@@ -40,7 +40,7 @@ class CartController extends Controller
 
     public function getCart()
     {
-        $cart = Cart::getOrCreate(Auth::user()->id);
+        $cart = Cart::where('customer_id', Auth::user()->id)->first();
         if ($cart == null) {
             return $this->response(false, "cart is empty", []);
         }

@@ -33,32 +33,34 @@ class PaymentMeta extends Model
                         'va_number' => $paymentInfo['permata_va_number']
                     ];
                 }
-                return [
-                    'bank' => $paymentInfo['va_numbers'][0]['bank'],
-                    'va_number' => $paymentInfo['va_numbers'][0]['va_number'],
-                ];
+                $vaNumbers = isset($paymentInfo['va_numbers']) ? $paymentInfo['va_numbers'][0] : [];
+                $data = self::getMetaFieldValue([], $vaNumbers, 'bank');
+                return self::getMetaFieldValue($data, $vaNumbers, 'va_number');
             case 'echannel':
-                return [
-                    'bill_key' => $paymentInfo['bill_key'],
-                    'biller_code' => $paymentInfo['biller_code']
-                ];
+                $data = self::getMetaFieldValue([], $paymentInfo, 'bill_key');
+                return self::getMetaFieldValue($data, $paymentInfo, 'biller_code');
             case 'cstore':
-                return [
-                    'approval_code' => $paymentInfo['approval_code'],
-                    'payment_code' => $paymentInfo['payment_code'],
-                    'store' => $paymentInfo['store'],
-                ];
+                $data = self::getMetaFieldValue([], $paymentInfo, 'approval_code');
+                $data = self::getMetaFieldValue($data, $paymentInfo, 'payment_code');
+                return self::getMetaFieldValue($data, $paymentInfo, 'store');
             default:
-                return [
-                    'approval_code' => $paymentInfo['approval_code']
-                ];
+                return self::getMetaFieldValue([], $paymentInfo, 'approval_code');
         }
+    }
+
+    private static function getMetaFieldValue($field, $data, $key)
+    {
+        if (isset($data[$key])) {
+            return array_merge($field, [$key => $data[$key]]);
+        }
+        return $field;
     }
 
     public static function saveMeta($orderPaymentId, $data)
     {
         $metaField = self::getMetaField($data);
         $metaData = self::transformField($orderPaymentId, $metaField);
+        self::where('order_payment_id', $orderPaymentId)->delete();
         self::insert($metaData);
     }
 

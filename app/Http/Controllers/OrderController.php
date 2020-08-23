@@ -9,7 +9,6 @@ use App\Models\Order;
 use App\Models\Promo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -47,15 +46,12 @@ class OrderController extends Controller
         }
         $order->shipment_address = $address->toAddressString();
         $order->shipment_note = $address->note;
-        $result = DB::transaction(function () use ($order, $cart) {
-            $order->save();
-            $cart->delete();
-            return [
-                "order_data" => $order,
-                "payment_data" => app(Midtrans::class)->getToken($order)
-            ];
-        });
-        return $this->response(false, 'order successfully created', $result);
+        $order->save();
+        $respData =  [
+            "order_data" => $order,
+            "payment_data" => app(Midtrans::class)->getToken($order)
+        ];
+        return $this->response(false, 'order successfully created', $respData);
     }
 
     private function validateOrder(Request $request)

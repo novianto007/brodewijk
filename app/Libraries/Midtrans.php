@@ -39,13 +39,13 @@ class Midtrans
     public function getPaymentInfo($id)
     {
         $resp = (array) ApiRequestor::remoteCall("https://api.sandbox.midtrans.com/v2/$id/status", \Midtrans\Config::$serverKey, null, false);
-        if (!$this->validateSignatureKey($resp)) {
+        if (!$this->verifySignatureKey($resp)) {
             throw new Exception('invalid signature');
         }
         return $resp;
     }
 
-    private function validateSignatureKey($data)
+    public function verifySignatureKey($data)
     {
         $key = $data['order_id'] . $data['status_code'] . $data['gross_amount'] . \Midtrans\Config::$serverKey;
         $signature = hash('sha512', $key, false);

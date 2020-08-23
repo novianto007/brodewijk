@@ -25,11 +25,17 @@ class OrderPayment extends Model
      */
     protected $hidden = [];
 
-    public static function savePaymentInfo($data)
+    public function updatePaymentInfo($data)
     {
         DB::transaction(function () use ($data) {
-            $orderPayment = OrderPayment::create($data);
-            PaymentMeta::saveMeta($orderPayment->id, $data);
+            $this->update($data);
+            PaymentMeta::saveMeta($this->id, $data);
         });
+    }
+
+    public static function savePaymentInfo($data)
+    {
+        $orderPayment = OrderPayment::create($data);
+        PaymentMeta::saveMeta($orderPayment->id, $data);
     }
 }
