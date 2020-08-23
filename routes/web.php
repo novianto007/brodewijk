@@ -35,6 +35,7 @@ $router->group(['prefix' => 'customer/api'], function () use ($router) {
 });
 
 $router->get("/payment/finish", "PaymentController@finish");
+$router->post("/payment/notification", "PaymentController@notification");
 
 $router->group(['prefix' => 'admin/api'], function () use ($router) {
     $router->post("/login", "Admin\AuthController@login");
