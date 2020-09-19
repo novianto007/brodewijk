@@ -21,13 +21,16 @@ class FabricTypeController extends Controller
             'name' => 'required|string',
             'base_price' => 'required|numeric',
             'extra_price' => 'required|numeric',
+            'base_price_margin' => 'numeric',
+            'extra_price_margin' => 'numeric',
             'features' => 'required|array',
         ]);
 
         $features = $request['features'];
         $this->customValidate($request, compact('features'), [
             'features.*.feature_option_id' => 'required|integer|exists:feature_options,id',
-            'features.*.price' => 'required|integer',
+            'features.*.price' => 'required|numeric',
+            'features.*.price_margin' => 'numeric'
         ]);
 
         $fabricType = DB::transaction(function () use ($fabricTypeInput, $features) {

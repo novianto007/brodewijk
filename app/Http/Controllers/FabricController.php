@@ -15,7 +15,8 @@ class FabricController extends Controller
             'name' => 'required|string',
             'brand' => 'required|string',
             'grade' => 'required|string',
-            'description' => 'string'
+            'description' => 'string',
+            'description_ind' => 'string'
         ]);
 
         $fabric = Fabric::create($fabricInput);

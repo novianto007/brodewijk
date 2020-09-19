@@ -21,6 +21,11 @@ class Fabric extends Model
      */
     protected $hidden = [];
 
+    protected $attributes = [
+        'description' => '',
+        'description_ind' => ''
+    ];
+
     public function fabricColors()
     {
         return $this->hasMany(FabricColor::class);

@@ -13,14 +13,20 @@ class FabricType extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'base_price', 'extra_price', 'category_id'
+        'name', 'base_price', 'extra_price', 'base_price_margin', 'extra_price_margin', 'category_id'
     ];
+
     /**
      * The attributes excluded from the model's JSON form.
      *
      * @var array
      */
     protected $hidden = [];
+
+    protected $attributes = [
+        'base_price_margin' => 0.0,
+        'extra_price_margin' => 0.0
+    ];
 
     public function fabrics()
     {

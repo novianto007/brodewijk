@@ -13,7 +13,7 @@ class FeaturePrice extends Model
      * @var array
      */
     protected $fillable = [
-        'fabric_type_id', 'feature_option_id', 'price'
+        'fabric_type_id', 'feature_option_id', 'price', 'price_margin'
     ];
 
     /**
@@ -22,6 +22,10 @@ class FeaturePrice extends Model
      * @var array
      */
     protected $hidden = [];
+
+    protected $attributes = [
+        'price_margin' => 0.0
+    ];
 
     public function fabricType()
     {
