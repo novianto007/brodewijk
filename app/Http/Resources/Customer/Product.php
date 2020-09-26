@@ -34,7 +34,7 @@ class Product extends BaseResource
         foreach ($this->productFeatures as $row) {
             $featureOption = $row->optionValue;
             if ($featureOption->resources) {
-                $res = unserialize($featureOption->resources);
+                $res = $featureOption->resourceData;
                 if ($featureOption->resource_depend) {
                     if (array_key_exists($featureOption->resource_depend, $depends)) {
                         foreach ($res as $key => $val) {
@@ -50,7 +50,7 @@ class Product extends BaseResource
             if ($featureOption->is_has_child) {
                 $optionChild = $row->childValue;
                 if ($optionChild && $optionChild->resources) {
-                    $res = unserialize($optionChild->resources);
+                    $res = $optionChild->resourceData;
                     $resources = array_merge($resources, $res);
                 }
             }

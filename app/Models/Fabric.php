@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Fabric extends Model
+class Fabric extends BaseModel
 {
     /**
      * The attributes that are mass assignable.

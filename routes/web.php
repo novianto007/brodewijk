@@ -39,9 +39,27 @@ $router->post("/payment/notification", "PaymentController@notification");
 
 $router->group(['prefix' => 'admin/api'], function () use ($router) {
     $router->post("/login", "Admin\AuthController@login");
-});
+    
+    $router->group(['middleware' => 'auth:users'], function () use ($router) {
+        $router->get("/fabric-types", "Admin\FabricTypeController@getAll");
+        $router->post("/fabric-type", "Admin\FabricTypeController@store");
+        $router->delete("/fabric-type/{id}", "Admin\FabricTypeController@destroy");
 
-$router->post("/upload/{id}", "FabricColorController@upload");
-$router->post("/fabric-type", "FabricTypeController@store");
-$router->post("/fabric", "FabricController@store");
-$router->post("/fabric-color", "FabricColorController@store");
+        $router->get("/fabric", "Admin\FabricController@getAll");
+        $router->post("/fabric", "Admin\FabricController@store");
+        $router->delete("/fabric/{id}", "Admin\FabricController@destroy");
+
+        $router->get("/fabric-color", "Admin\FabricColorController@getAll");
+        $router->post("/fabric-color", "Admin\FabricColorController@store");
+        $router->delete("/fabric-color/{id}", "Admin\FabricColorController@destroy");
+        $router->post("/fabric-color/upload/{id}", "Admin\FabricColorController@upload");
+
+        $router->get("/feature", "Admin\FeatureController@getAll");
+        $router->post("/feature", "Admin\FeatureController@store");
+        $router->delete("/feature/{id}", "Admin\FeatureController@destroy");
+
+        $router->get("/feature-option", "Admin\FeatureOptionController@getAll");
+        $router->post("/feature-option", "Admin\FeatureOptionController@store");
+        $router->delete("/feature-option/{id}", "Admin\FeatureOptionController@destroy");
+    });
+});

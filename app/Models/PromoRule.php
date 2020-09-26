@@ -63,8 +63,8 @@ class PromoRule extends Model
             return $data['fabric_id'];
         }, $cart->orderProducts()->toArray());
 
-        $valFabircs = unserialize($this->value);
-        $results = array_intersect($fabrics, $valFabircs);
+        $valFabrics = unserialize($this->value);
+        $results = array_intersect($fabrics, $valFabrics);
         return sizeof($results) > 0;
     }
 }

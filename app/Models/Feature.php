@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Feature extends Model
+class Feature extends BaseModel
 {
 
     /**
@@ -13,7 +11,7 @@ class Feature extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'type', 'description', 'category_id'
+        'name', 'name_ind', 'type', 'description', 'category_id', 'resource_depend'
     ];
 
     /**
@@ -23,6 +21,11 @@ class Feature extends Model
      */
     protected $hidden = [];
 
+    protected $attributes = [
+        'name_ind' => '',
+        'description' => ''
+    ];
+
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -31,5 +34,11 @@ class Feature extends Model
     public function featureOptions()
     {
         return $this->hasMany(FeatureOption::class);
+    }
+
+    public function setResourceDepend($featureId)
+    {
+        $this->resource_depend = $featureId;
+        FeatureOption::where('feature_id', $this->id)->update(['resource_depend' => $featureId]);
     }
 }

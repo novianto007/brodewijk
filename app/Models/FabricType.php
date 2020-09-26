@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
-class FabricType extends Model
+class FabricType extends BaseModel
 {
 
     /**
@@ -27,6 +25,12 @@ class FabricType extends Model
         'base_price_margin' => 0.0,
         'extra_price_margin' => 0.0
     ];
+
+    public function delete()
+    {
+        FeaturePrice::where('fabric_type_id', $this->id)->delete();
+        parent::delete();
+    }
 
     public function fabrics()
     {

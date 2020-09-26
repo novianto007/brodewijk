@@ -1,19 +1,29 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\FabricColor;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use ZanySoft\Zip\Zip;
 use Illuminate\Support\Str;
+use App\Http\Controllers\Controller;
+use App\Repositories\FabricColorRepository;
 
 class FabricColorController extends Controller
 {
+    public function getAll(FabricColorRepository $reporsitory)
+    {
+        return $this->response(false, 'success', $reporsitory->getAll());
+    }
+
     public function upload(Request $request, $id)
     {
         $file = $request->file('file');
-        $fabricColor = $this->findModel($id);
+        $fabricColor = FabricColor::find($id);
+        if (!$fabricColor) {
+            return $this->response(true, 'Not Found', null, 404);
+        }
+
         if ($fabricColor->path) {
             array_map('unlink', glob('public/' . storage_path($fabricColor->path) . "/*.*"));
         } else {
@@ -45,6 +55,16 @@ class FabricColorController extends Controller
         return $this->response(false, 'success', $fabricColor);
     }
 
+    public function destroy($id)
+    {
+        $fabricColor = FabricColor::find($id);
+        if ($fabricColor) {
+            $fabricColor->delete();
+            return $this->response(false, 'success', null, 200);
+        }
+        return $this->response(true, 'Not Found', null, 404);
+    }
+
     protected function generatePath($fabricColor)
     {
         $fabric = $fabricColor->fabric;
@@ -53,13 +73,5 @@ class FabricColorController extends Controller
         $brand = Str::slug($fabric->brand);
         $color = Str::slug($fabricColor->name);
         return sprintf("images/%s/%s/%s/%s", $categoryName, $type, $brand, $color);
-    }
-
-    protected function findModel($id)
-    {
-        if (($model = FabricColor::find($id)) !== null) {
-            return $model;
-        }
-        throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

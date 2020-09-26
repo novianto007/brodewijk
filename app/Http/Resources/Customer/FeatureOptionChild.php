@@ -19,7 +19,7 @@ class FeatureOptionChild extends BaseResource
             'selected' => $this->id == $this->extraField->child_value,
             'name' => $this->name,
             'image' => $this->image,
-            'resources' => $this->resources,
+            'resources' => $this->resourceData,
         ];
     }
 

@@ -37,8 +37,7 @@ class FeatureOption extends BaseResource
 
     private function getResource()
     {
-        $resourceList = (unserialize($this->resources)) ? unserialize($this->resources) : [];
-        return $this->generateWithDepend($resourceList);
+        return $this->generateWithDepend($this->resourceData);
     }
 
     private function generateWithDepend($imageResources)

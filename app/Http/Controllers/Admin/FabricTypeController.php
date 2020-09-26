@@ -1,13 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\FabricType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Repositories\FabricTypeRepository;
 
 class FabricTypeController extends Controller
 {
+    public function getAll(FabricTypeRepository $reporsitory)
+    {
+        return $this->response(false, 'success', $reporsitory->getAll());
+    }
+
     /**
      * Get the measurement.
      *
@@ -39,5 +46,18 @@ class FabricTypeController extends Controller
             return $fabricType;
         });
         return $this->response(false, 'success', $fabricType);
+    }
+
+    public function destroy($id)
+    {
+        $fabricType = FabricType::find($id);
+        if ($fabricType) {
+            if ($fabricType->fabrics) {
+                return $this->response(true, 'Fabric Type is used by another resource', null, 400);
+            }
+            $fabricType->delete();
+            return $this->response(false, 'success', null, 200);
+        }
+        return $this->response(true, 'Not Found', null, 404);
     }
 }
