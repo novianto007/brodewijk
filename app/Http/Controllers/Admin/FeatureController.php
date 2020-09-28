@@ -50,7 +50,7 @@ class FeatureController extends Controller
     {
         $feature = Feature::find($id);
         if ($feature) {
-            if ($feature->type == 'option' && $feature->featureOptions) {
+            if ($feature->type == 'option' && $feature->featureOptions()->count()) {
                 return $this->response(true, 'Feature is used by another resource', null, 400);
             }
             $feature->delete();

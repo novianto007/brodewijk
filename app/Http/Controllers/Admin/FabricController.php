@@ -35,7 +35,7 @@ class FabricController extends Controller
     {
         $fabric = Fabric::find($id);
         if ($fabric) {
-            if ($fabric->fabricsColors) {
+            if ($fabric->fabricsColors()->count()) {
                 return $this->response(true, 'Fabric is used by another resource', null, 400);
             }
             $fabric->delete();

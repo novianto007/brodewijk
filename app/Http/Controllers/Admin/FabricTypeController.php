@@ -52,7 +52,7 @@ class FabricTypeController extends Controller
     {
         $fabricType = FabricType::find($id);
         if ($fabricType) {
-            if ($fabricType->fabrics) {
+            if ($fabricType->fabrics()->count()) {
                 return $this->response(true, 'Fabric Type is used by another resource', null, 400);
             }
             $fabricType->delete();
