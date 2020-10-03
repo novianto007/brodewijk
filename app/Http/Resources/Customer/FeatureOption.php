@@ -45,10 +45,11 @@ class FeatureOption extends BaseResource
         if ($this->resource_depend) {
             $newResourceList = [];
             foreach ($this->depend->featureOptions as $option) {
+                $newResource = [];
                 foreach ($imageResources as $key => $val) {
-                    $imageResources[$key] = str_replace('{depend}', $option->code_name, $val);
+                    $newResource[$key] = str_replace('{depend}', $option->code_name, $val);
                 }
-                $newResourceList[$option->code_name] = $imageResources;
+                $newResourceList[$option->code_name] = $newResource;
             }
             return $newResourceList;
         }

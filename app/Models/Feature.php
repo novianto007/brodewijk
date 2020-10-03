@@ -36,9 +36,10 @@ class Feature extends BaseModel
         return $this->hasMany(FeatureOption::class);
     }
 
-    public function setResourceDepend($featureId)
+    public function updateResourceDepend($featureId)
     {
         $this->resource_depend = $featureId;
         FeatureOption::where('feature_id', $this->id)->update(['resource_depend' => $featureId]);
+        $this->save();
     }
 }

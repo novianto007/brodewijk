@@ -35,7 +35,7 @@ class FeatureController extends Controller
         $feature = DB::transaction(function () use ($featureInput) {
             $feature = Feature::create($featureInput);
             if ($featureInput['resource_depend'] != null) {
-                Feature::find($featureInput['resource_depend'])->setResourceDepend($feature->id);
+                Feature::find($featureInput['resource_depend'])->updateResourceDepend($feature->id);
             }
             if ($feature->type == 'value') {
                 FeatureOption::insertDefaultValue($feature->id);
